@@ -6,27 +6,17 @@ using System.Threading.Tasks;
 
 namespace Chess
 {
-    internal class CageId
-    {
-        public string Id { get; }
-        public CageId(string horizontal, int vertical)
-        {
-            Id = $"{horizontal + vertical}";
-        }
-    }
-    internal class Cage
-    {
-        public CageId cageid;
-        public Figure figure;
-        public bool access;
-    }
-
     internal class Figure
     {
-        public string cage;
+        public string cell;
+        public string color;
     }
     internal class Pawn : Figure
     {
-
+        public Pawn(string pawnColor , string pawnCell)
+        {
+            color = pawnColor;
+            cell = pawnCell;
+        }
     }
 }
