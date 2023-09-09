@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,16 +22,16 @@ namespace Chess
     /// </summary>
     public partial class MainWindow : Window
     {
-        public int movenum = 0;
+        public int cellChoiseNum = 0;
 
-        static Pawn whitePawn_1 = new Pawn("white");
-        static Pawn whitePawn_2 = new Pawn("white");
-        static Pawn whitePawn_3 = new Pawn("white");
-        static Pawn whitePawn_4 = new Pawn("white");
-        static Pawn whitePawn_5 = new Pawn("white");
-        static Pawn whitePawn_6 = new Pawn("white");
-        static Pawn whitePawn_7 = new Pawn("white");
-        static Pawn whitePawn_8 = new Pawn("white");
+        static Pawn whitePawn_1 = new Pawn("White");
+        static Pawn whitePawn_2 = new Pawn("White");
+        static Pawn whitePawn_3 = new Pawn("White");
+        static Pawn whitePawn_4 = new Pawn("White");
+        static Pawn whitePawn_5 = new Pawn("White");
+        static Pawn whitePawn_6 = new Pawn("White");
+        static Pawn whitePawn_7 = new Pawn("White");
+        static Pawn whitePawn_8 = new Pawn("White");
 
         Dictionary<string, Figure> FiguresArrangement = new Dictionary<string, Figure>()
         {
@@ -44,9 +45,10 @@ namespace Chess
             { "H2" , whitePawn_1 },
         };
 
-        //List<Figure> FiguresArrangement2 = new List<Figure>();
-
         Dictionary<string, Button> CellsInMove = new Dictionary<string, Button>();
+
+        List<string> avaliableCells = new List<string>();
+
 
 
         public MainWindow()
@@ -442,30 +444,32 @@ namespace Chess
 
         private void Move(Button cell)
         {
-            DEB.Content = $"movenum = {movenum}";
+            DEB.Content = $"movenum = {cellChoiseNum}";
 
 
-            if (movenum == 0 && !FiguresArrangement.ContainsKey(cell.Name))
+            if (cellChoiseNum == 0 && !FiguresArrangement.ContainsKey(cell.Name))
             {
                 return;
-                DEB.Content = $"movenum = {movenum}";
-
+                DEB.Content = $"movenum = {cellChoiseNum}";
             }
-            else if (movenum == 0 && FiguresArrangement.ContainsKey(cell.Name))
+            else if (cellChoiseNum == 0 && FiguresArrangement.ContainsKey(cell.Name))
             {
-                CellsInMove.Add("first", cell);
-                movenum = 1;
-                DEB.Content = $"movenum = {movenum}";
+                avaliableCells = GetAvaliableCells(cell.Name);
 
+                CellsInMove.Add("first", cell);
+                cellChoiseNum = 1;
+
+                DEB.Content = $"movenum = {cellChoiseNum}";
+                DEB.Content = avaliableCells;
             }
-            else if (movenum == 1 && CellsInMove["first"] == cell)
+            else if (cellChoiseNum == 1 && CellsInMove["first"] == cell)
             {
                 CellsInMove.Clear();
-                movenum = 0;
-                DEB.Content = $"movenum = {movenum}";
+                cellChoiseNum = 0;
 
+                DEB.Content = $"movenum = {cellChoiseNum}";
             }
-            else if (movenum == 1)
+            else if (cellChoiseNum == 1)
             {
                 FiguresArrangement.Add(cell.Name, FiguresArrangement[CellsInMove["first"].Name]);
                 FiguresArrangement.Remove(CellsInMove["first"].Name);
@@ -474,11 +478,49 @@ namespace Chess
                 CellsInMove["first"].Content = "";
                 CellsInMove.Clear();
 
-                movenum = 0;
-                DEB.Content = $"movenum = {movenum}";
+                cellChoiseNum = 0;
 
+                DEB.Content = $"movenum = {cellChoiseNum}";
             }
 
+        }
+
+        private List<string> GetAvaliableCells(string cell)
+        {
+            var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
+            var cellHorizontalValue = cell.Substring(0, 1);
+
+
+            if (FiguresArrangement[cell].type == "Pawn")
+            {
+
+                if (FiguresArrangement[cell].color == "White" && cellVerticalValue < 8)
+                {
+                    if(cellVerticalValue == 2 && !FiguresArrangement.ContainsKey(cellHorizontalValue + "4"))
+                    {
+                        avaliableCells.Add(cellHorizontalValue + "4");
+                    }
+
+                    if (!FiguresArrangement.ContainsKey(cellHorizontalValue + (cellVerticalValue++).ToString()))
+                    {
+                        avaliableCells.Add(cellHorizontalValue + (cellVerticalValue++).ToString());
+                    }
+                }
+                else if(FiguresArrangement[cell].color == "Black" && cellVerticalValue > 1)
+                {
+                    if (cellVerticalValue == 7 && !FiguresArrangement.ContainsKey(cellHorizontalValue + "5"))
+                    {
+                        avaliableCells.Add(cellHorizontalValue + "5");
+                    }
+
+                    if (!FiguresArrangement.ContainsKey(cellHorizontalValue + (cellVerticalValue--).ToString()))
+                    {
+                        avaliableCells.Add(cellHorizontalValue + (cellVerticalValue--).ToString());
+                    }
+                }
+            }
+
+            return avaliableCells;
         }
 
     }
