@@ -101,6 +101,7 @@
         <Button x:Name="H6" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,300,0,0" VerticalAlignment="Top" FontSize="48" Background="#FF736258" Click="H6_Click"/>
         <Button x:Name="H7" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,200,0,0" VerticalAlignment="Top" FontSize="48" Background="#FFD0D0CE" Click="H7_Click"/>
         <Button x:Name="H8" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,100,0,0" VerticalAlignment="Top" FontSize="48" Background="#FF736258" Click="H8_Click"/>
+        <Label x:Name="DEB" Content="Label" HorizontalAlignment="Left" Margin="922,108,0,0" VerticalAlignment="Top" Height="83" Width="197"/>
 
     </Grid>
 </Window>

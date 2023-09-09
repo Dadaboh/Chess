@@ -8,15 +8,13 @@ namespace Chess
 {
     internal class Figure
     {
-        public string cell;
         public string color;
     }
     internal class Pawn : Figure
     {
-        public Pawn(string pawnColor , string pawnCell)
+        public Pawn(string pawnColor)
         {
             color = pawnColor;
-            cell = pawnCell;
         }
     }
 }

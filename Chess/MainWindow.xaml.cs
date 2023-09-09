@@ -22,35 +22,38 @@ namespace Chess
     public partial class MainWindow : Window
     {
         public int movenum = 0;
-        public Button firstCell;
-        public object firstCellContent;
 
-        static Pawn whitePawn_1 = new Pawn("white", "A2");
-        static Pawn whitePawn_2 = new Pawn("white", "B2");
-        static Pawn whitePawn_3 = new Pawn("white", "C2");
-        static Pawn whitePawn_4 = new Pawn("white", "D2");
-        static Pawn whitePawn_5 = new Pawn("white", "E2");
-        static Pawn whitePawn_6 = new Pawn("white", "F2");
-        static Pawn whitePawn_7 = new Pawn("white", "G2");
-        static Pawn whitePawn_8 = new Pawn("white", "H2");
+        static Pawn whitePawn_1 = new Pawn("white");
+        static Pawn whitePawn_2 = new Pawn("white");
+        static Pawn whitePawn_3 = new Pawn("white");
+        static Pawn whitePawn_4 = new Pawn("white");
+        static Pawn whitePawn_5 = new Pawn("white");
+        static Pawn whitePawn_6 = new Pawn("white");
+        static Pawn whitePawn_7 = new Pawn("white");
+        static Pawn whitePawn_8 = new Pawn("white");
 
         Dictionary<string, Figure> FiguresArrangement = new Dictionary<string, Figure>()
         {
-            { whitePawn_1.cell , whitePawn_1 },
-            { whitePawn_2.cell , whitePawn_1 },
-            { whitePawn_3.cell , whitePawn_1 },
-            { whitePawn_4.cell , whitePawn_1 },
-            { whitePawn_5.cell , whitePawn_1 },
-            { whitePawn_6.cell , whitePawn_1 },
-            { whitePawn_7.cell , whitePawn_1 },
-            { whitePawn_8.cell , whitePawn_1 },
+            { "A2" , whitePawn_1 },
+            { "B2" , whitePawn_1 },
+            { "C2" , whitePawn_1 },
+            { "D2" , whitePawn_1 },
+            { "E2" , whitePawn_1 },
+            { "F2" , whitePawn_1 },
+            { "G2" , whitePawn_1 },
+            { "H2" , whitePawn_1 },
         };
+
+        //List<Figure> FiguresArrangement2 = new List<Figure>();
+
+        Dictionary<string, Button> CellsInMove = new Dictionary<string, Button>();
 
 
         public MainWindow()
         {
 
             InitializeComponent();
+
 
             #region Content
 
@@ -118,42 +121,42 @@ namespace Chess
         #region Cells
         private void A1_Click(object sender, RoutedEventArgs e)
         {
-            Move(A1, "A1");
+            Move(A1);
         }
 
         private void A2_Click(object sender, RoutedEventArgs e)
         {
-            Move( A2 , "A2");
+            Move(A2);
         }
 
         private void A3_Click(object sender, RoutedEventArgs e)
         {
-            Move( A3, "A3");
+            Move(A3);
         }
 
         private void A4_Click(object sender, RoutedEventArgs e)
         {
-            Move( A4, "A4");
+            Move(A4);
         }
 
         private void A5_Click(object sender, RoutedEventArgs e)
         {
-
+            Move(A5);
         }
 
         private void A6_Click(object sender, RoutedEventArgs e)
         {
-
+            Move(A6);
         }
 
         private void A7_Click(object sender, RoutedEventArgs e)
         {
-
+            Move(A7);
         }
 
         private void A8_Click(object sender, RoutedEventArgs e)
         {
-
+            Move(A8);
         }
 
         private void B1_Click(object sender, RoutedEventArgs e)
@@ -437,29 +440,43 @@ namespace Chess
         }
         #endregion
 
-        private void Move(Button bcell, string cell)
+        private void Move(Button cell)
         {
+            DEB.Content = $"movenum = {movenum}";
 
 
-            if (movenum == 0 && !FiguresArrangement.ContainsKey(cell))
+            if (movenum == 0 && !FiguresArrangement.ContainsKey(cell.Name))
             {
-                return ;
+                return;
+                DEB.Content = $"movenum = {movenum}";
+
             }
-            else if (movenum == 0 && FiguresArrangement.ContainsKey(cell))
+            else if (movenum == 0 && FiguresArrangement.ContainsKey(cell.Name))
             {
-                firstCell = bcell;
-                firstCellContent = bcell.Content;
+                CellsInMove.Add("first", cell);
                 movenum = 1;
+                DEB.Content = $"movenum = {movenum}";
+
             }
-            else if (movenum == 1 && firstCell == bcell)
+            else if (movenum == 1 && CellsInMove["first"] == cell)
             {
+                CellsInMove.Clear();
                 movenum = 0;
+                DEB.Content = $"movenum = {movenum}";
+
             }
             else if (movenum == 1)
             {
-                bcell.Content = firstCellContent;
-                firstCell.Content = "";
+                FiguresArrangement.Add(cell.Name, FiguresArrangement[CellsInMove["first"].Name]);
+                FiguresArrangement.Remove(CellsInMove["first"].Name);
+
+                cell.Content = CellsInMove["first"].Content;
+                CellsInMove["first"].Content = "";
+                CellsInMove.Clear();
+
                 movenum = 0;
+                DEB.Content = $"movenum = {movenum}";
+
             }
 
         }
