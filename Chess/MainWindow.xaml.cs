@@ -26,6 +26,7 @@ namespace Chess
         public List<Button> CellsInMove = new List<Button>();
         public List<string> avaliableCells = new List<string>();
 
+        List<string> History = new List<string>();
 
 
         static Pawn whitePawn_1 = new Pawn("White");
@@ -541,12 +542,19 @@ namespace Chess
                     if (FiguresArrangement.ContainsKey(CellsInMove[1].Name))
                     {
                         // тут описана логіка при взятті фігури
+
+                        FiguresArrangement.Remove(CellsInMove[1].Name);
+
+                        FiguresArrangement.Add(CellsInMove[1].Name, FiguresArrangement[CellsInMove[0].Name]);
+                        FiguresArrangement.Remove(CellsInMove[0].Name);
                     }
                     else
                     {
                         FiguresArrangement.Add(CellsInMove[1].Name, FiguresArrangement[CellsInMove[0].Name]);
                         FiguresArrangement.Remove(CellsInMove[0].Name);
                     }
+
+                    History.Add($"{CellsInMove[0].Name} => {CellsInMove[1].Name}");
 
                     CellsInMove.Clear();
 
@@ -559,45 +567,110 @@ namespace Chess
         #region oldLogic2
         private void GetAvaliableCells(string cell)
         {
+            var VerticalValues = new Dictionary<int, string>
+            {
+                { 0 , "empty" },
+                { 1 , "1" },
+                { 2 , "2" },
+                { 3 , "3" },
+                { 4 , "4" },
+                { 5 , "5" },
+                { 6 , "6" },
+                { 7 , "7" },
+                { 8 , "8" },
+                { 9 , "empty" },
+            };
+            
+            var HorizontalValues = new Dictionary<int, string>
+            {
+                { 0 , "empty" },
+                { 1 , "A" },
+                { 2 , "B" },
+                { 3 , "C" },
+                { 4 , "D" },
+                { 5 , "E" },
+                { 6 , "F" },
+                { 7 , "G" },
+                { 8 , "H" },
+                { 9 , "empty" },
+            };
+
             avaliableCells.Clear();
 
             var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
+
             var cellHorizontalValue = cell.Substring(0, 1);
+            var myHorizontalKey = HorizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
 
             #region Pawn
             if (FiguresArrangement[cell].type == "Pawn")
             {
-
                 if (FiguresArrangement[cell].color == "White" && cellVerticalValue < 8)
                 {
+                    if (!FiguresArrangement.ContainsKey(cellHorizontalValue + (cellVerticalValue + 1).ToString()))
+                    {
+                        avaliableCells.Add(cellHorizontalValue + (cellVerticalValue + 1).ToString());
+                    }
 
                     if (cellVerticalValue == 2 && !FiguresArrangement.ContainsKey(cellHorizontalValue + "4") && !FiguresArrangement.ContainsKey(cellHorizontalValue + "3"))
                     {
                         avaliableCells.Add(cellHorizontalValue + "4");
                     }
 
-                    if (!FiguresArrangement.ContainsKey(cellHorizontalValue + (++cellVerticalValue).ToString()))
+                    var tmp = HorizontalValues[myHorizontalKey + 1] + VerticalValues[cellVerticalValue + 1];
+
+                    if (FiguresArrangement.ContainsKey(tmp) && FiguresArrangement[tmp].color != WhoseMove)
                     {
-                        avaliableCells.Add(cellHorizontalValue + (cellVerticalValue++).ToString());
+                        avaliableCells.Add(tmp);
+                    }
+
+                    tmp = HorizontalValues[myHorizontalKey - 1] + VerticalValues[cellVerticalValue + 1];
+
+                    if (FiguresArrangement.ContainsKey(tmp) && FiguresArrangement[tmp].color != WhoseMove)
+                    {
+                        avaliableCells.Add(tmp);
                     }
                 }
                 else if (FiguresArrangement[cell].color == "Black" && cellVerticalValue > 1)
                 {
+                    if (!FiguresArrangement.ContainsKey(cellHorizontalValue + (cellVerticalValue - 1).ToString()))
+                    {
+                        avaliableCells.Add(cellHorizontalValue + (cellVerticalValue - 1).ToString());
+                    }
+
                     if (cellVerticalValue == 7 && !FiguresArrangement.ContainsKey(cellHorizontalValue + "5") && !FiguresArrangement.ContainsKey(cellHorizontalValue + "6"))
                     {
                         avaliableCells.Add(cellHorizontalValue + "5");
                     }
 
-                    if (!FiguresArrangement.ContainsKey(cellHorizontalValue + (--cellVerticalValue).ToString()))
+                    var tmp = HorizontalValues[myHorizontalKey + 1] + VerticalValues[cellVerticalValue - 1];
+
+                    if (FiguresArrangement.ContainsKey(tmp) && FiguresArrangement[tmp].color != WhoseMove)
                     {
-                        avaliableCells.Add(cellHorizontalValue + (cellVerticalValue--).ToString());
+                        avaliableCells.Add(tmp);
+                    }
+
+                    tmp = HorizontalValues[myHorizontalKey - 1] + VerticalValues[cellVerticalValue - 1];
+
+                    if (FiguresArrangement.ContainsKey(tmp) && FiguresArrangement[tmp].color != WhoseMove)
+                    {
+                        avaliableCells.Add(tmp);
                     }
                 }
+
+
             }
             #endregion
 
+
+            //перевірити чи не підставляємо короля під удар
+            CheckKingsSafety();
         }
         #endregion
 
+        private void CheckKingsSafety()
+        {
+            //чи не підставляємо короля під удар
+        }
     }
 }
