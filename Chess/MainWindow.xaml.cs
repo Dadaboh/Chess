@@ -582,8 +582,6 @@ namespace Chess
 
                     if (FiguresArrangement.ContainsKey(CellsInMove[1].Name))
                     {
-                        // тут описана логіка при взятті фігури
-
                         FiguresArrangement.Remove(CellsInMove[1].Name);
 
                         FiguresArrangement.Add(CellsInMove[1].Name, FiguresArrangement[CellsInMove[0].Name]);
@@ -695,7 +693,7 @@ namespace Chess
 
         private void GetStraightAvailableCells(string cellHorizontalValue, int myHorizontalKey, int cellVerticalValue)
         {
-            for(int i = cellVerticalValue + 1; i < 8; i++)
+            for(int i = cellVerticalValue + 1; i <= 8; i++)
             {
 
                 if(FiguresArrangement.ContainsKey(cellHorizontalValue + i) && FiguresArrangement[cellHorizontalValue + i].color == WhoseMove)
@@ -714,7 +712,7 @@ namespace Chess
 
             }
 
-            for(int i = cellVerticalValue - 1; i > 1; i--)
+            for(int i = cellVerticalValue - 1; i >= 1; i--)
             {
                 if (FiguresArrangement.ContainsKey(cellHorizontalValue + i) && FiguresArrangement[cellHorizontalValue + i].color == WhoseMove)
                 {
