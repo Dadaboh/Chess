@@ -19,4 +19,13 @@ namespace Chess
             type = "Pawn";
         }
     }
+
+    internal class Rook : Figure
+    {
+        public Rook(string rookColor)
+        {
+            color = rookColor;
+            type = "Rook";
+        }
+    }
 }
