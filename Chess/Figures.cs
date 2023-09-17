@@ -46,4 +46,13 @@ namespace Chess
             type = "Queen";
         }
     }
+    internal class King : Figure
+    {
+        public King(string kingColor)
+        {
+            color = kingColor;
+            type = "King";
+        }
+    }
+
 }

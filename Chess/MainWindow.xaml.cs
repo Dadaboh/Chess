@@ -74,6 +74,7 @@ namespace Chess
         static Bishop whiteBishop_2 = new Bishop("White");
 
         static Queen whiteQueen = new Queen("White");
+        static King whiteKing = new King("King");
 
         static Pawn blackPawn_1 = new Pawn("Black");
         static Pawn blackPawn_2 = new Pawn("Black");
@@ -91,7 +92,7 @@ namespace Chess
         static Bishop blackBishop_2 = new Bishop("Black");
 
         static Queen blackQueen = new Queen("Black");
-
+        static King blackKing = new King("Black");
 
 
         Dictionary<string, Figure> FiguresArrangement = new Dictionary<string, Figure>()
@@ -112,6 +113,7 @@ namespace Chess
             { "F1" , whiteBishop_2 },
 
             { "D1" , whiteQueen },
+            { "E1" , whiteKing },
 
             { "A7" , blackPawn_1 },
             { "B7" , blackPawn_2 },
@@ -129,6 +131,7 @@ namespace Chess
             { "F8" , blackBishop_2 },
 
             { "D8" , blackQueen },
+            { "E8" , blackKing },
         };
 
         //Dictionary<string, Button> CellsInMove = new Dictionary<string, Button>();
@@ -669,6 +672,10 @@ namespace Chess
             {
                 GetStraightAvailableCells(cellHorizontalValue, myHorizontalKey, cellVerticalValue);
                 GetDiagonalAvailableCells(myHorizontalKey, cellVerticalValue);
+            }
+            else if (FiguresArrangement[cell].type == "King")
+            {
+
             }
 
 
