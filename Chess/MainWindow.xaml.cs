@@ -73,6 +73,8 @@ namespace Chess
         static Bishop whiteBishop_1 = new Bishop("White");
         static Bishop whiteBishop_2 = new Bishop("White");
 
+        static Queen whiteQueen = new Queen("White");
+
         static Pawn blackPawn_1 = new Pawn("Black");
         static Pawn blackPawn_2 = new Pawn("Black");
         static Pawn blackPawn_3 = new Pawn("Black");
@@ -87,6 +89,8 @@ namespace Chess
 
         static Bishop blackBishop_1 = new Bishop("Black");
         static Bishop blackBishop_2 = new Bishop("Black");
+
+        static Queen blackQueen = new Queen("Black");
 
 
 
@@ -107,6 +111,8 @@ namespace Chess
             { "C1" , whiteBishop_1 },
             { "F1" , whiteBishop_2 },
 
+            { "D1" , whiteQueen },
+
             { "A7" , blackPawn_1 },
             { "B7" , blackPawn_2 },
             { "C7" , blackPawn_3 },
@@ -121,6 +127,8 @@ namespace Chess
 
             { "C8" , blackBishop_1 },
             { "F8" , blackBishop_2 },
+
+            { "D8" , blackQueen },
         };
 
         //Dictionary<string, Button> CellsInMove = new Dictionary<string, Button>();
@@ -649,18 +657,20 @@ namespace Chess
             }
             #endregion
 
-            #region Rook
-
             if (FiguresArrangement[cell].type == "Rook")
             {
                 GetStraightAvailableCells(cellHorizontalValue, myHorizontalKey, cellVerticalValue);
             }
             else if (FiguresArrangement[cell].type == "Bishop")
             {
-                GetDiagonalAvailableCells(cellHorizontalValue, myHorizontalKey, cellVerticalValue);
+                GetDiagonalAvailableCells(myHorizontalKey, cellVerticalValue);
+            }
+            else if (FiguresArrangement[cell].type == "Queen")
+            {
+                GetStraightAvailableCells(cellHorizontalValue, myHorizontalKey, cellVerticalValue);
+                GetDiagonalAvailableCells(myHorizontalKey, cellVerticalValue);
             }
 
-            #endregion
 
 
             //перевірити чи не підставляємо короля під удар
@@ -742,7 +752,7 @@ namespace Chess
             }
         }
 
-        private void GetDiagonalAvailableCells(string cellHorizontalValue, int myHorizontalKey, int cellVerticalValue)
+        private void GetDiagonalAvailableCells(int myHorizontalKey, int cellVerticalValue)
         {
             for(int h = myHorizontalKey + 1, v = cellVerticalValue + 1; h <= 8 && v <= 8; h++, v++)
             {
