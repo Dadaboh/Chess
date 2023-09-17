@@ -28,4 +28,13 @@ namespace Chess
             type = "Rook";
         }
     }
+
+    internal class Bishop : Figure
+    {
+        public Bishop(string bishopColor)
+        {
+            color = bishopColor;
+            type = "Bishop";
+        }
+    }
 }
