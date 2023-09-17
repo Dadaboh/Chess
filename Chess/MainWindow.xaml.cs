@@ -506,46 +506,6 @@ namespace Chess
 
         private void Move(Button cell)
         {
-            #region oldLogic
-            //DEB.Content = $"movenum = {cellChoiseNum}";
-
-            //if (cellChoiseNum == 0 && !FiguresArrangement.ContainsKey(cell.Name))
-            //{
-            //    return;
-            //    DEB.Content = $"movenum = {cellChoiseNum}";
-            //}
-            //else if (cellChoiseNum == 0 && FiguresArrangement.ContainsKey(cell.Name))
-            //{
-            //    avaliableCells = GetAvaliableCells(cell.Name);
-
-            //    CellsInMove.Add("first", cell);
-            //    cellChoiseNum = 1;
-
-            //    DEB.Content = $"movenum = {cellChoiseNum}";
-            //    DEB.Content = avaliableCells;
-            //}
-            //else if (cellChoiseNum == 1 && CellsInMove["first"] == cell)
-            //{
-            //    CellsInMove.Clear();
-            //    cellChoiseNum = 0;
-
-            //    DEB.Content = $"movenum = {cellChoiseNum}";
-            //}
-            //else if (cellChoiseNum == 1 && avaliableCells.Contains(cell.Name.ToString()))
-            //{
-            //    FiguresArrangement.Add(cell.Name, FiguresArrangement[CellsInMove["first"].Name]);
-            //    FiguresArrangement.Remove(CellsInMove["first"].Name);
-
-            //    cell.Content = CellsInMove["first"].Content;
-            //    CellsInMove["first"].Content = "";
-            //    CellsInMove.Clear();
-
-            //    cellChoiseNum = 0;
-
-            //    DEB.Content = $"movenum = {cellChoiseNum}";
-            //}
-            #endregion
-
             if (CellsInMove.Count == 0 && !FiguresArrangement.ContainsKey(cell.Name))
             {
                 DEB.Content = "Перша клітинка має містити фігуру";
@@ -725,6 +685,40 @@ namespace Chess
                 else if (FiguresArrangement.ContainsKey(cellHorizontalValue + i) && FiguresArrangement[cellHorizontalValue + i].color != WhoseMove)
                 {
                     avaliableCells.Add(cellHorizontalValue + i);
+                    break;
+                }
+            }
+
+            for(int i = myHorizontalKey + 1; i <= 8; i++)
+            {
+                if (FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue) && FiguresArrangement[HorizontalValues[i] + cellVerticalValue].color == WhoseMove)
+                {
+                    break;
+                }
+                else if (!FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue))
+                {
+                    avaliableCells.Add(HorizontalValues[i] + cellVerticalValue);
+                }
+                else if (FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue) && FiguresArrangement[HorizontalValues[i] + cellVerticalValue].color != WhoseMove)
+                {
+                    avaliableCells.Add(HorizontalValues[i] + cellVerticalValue);
+                    break;
+                }
+            }
+
+            for (int i = myHorizontalKey - 1; i >= 1; i--)
+            {
+                if (FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue) && FiguresArrangement[HorizontalValues[i] + cellVerticalValue].color == WhoseMove)
+                {
+                    break;
+                }
+                else if (!FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue))
+                {
+                    avaliableCells.Add(HorizontalValues[i] + cellVerticalValue);
+                }
+                else if (FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue) && FiguresArrangement[HorizontalValues[i] + cellVerticalValue].color != WhoseMove)
+                {
+                    avaliableCells.Add(HorizontalValues[i] + cellVerticalValue);
                     break;
                 }
             }
