@@ -74,7 +74,7 @@ namespace Chess
         static Bishop whiteBishop_2 = new Bishop("White");
 
         static Queen whiteQueen = new Queen("White");
-        static King whiteKing = new King("King");
+        static King whiteKing = new King("White");
 
         static Pawn blackPawn_1 = new Pawn("Black");
         static Pawn blackPawn_2 = new Pawn("Black");
@@ -675,7 +675,14 @@ namespace Chess
             }
             else if (FiguresArrangement[cell].type == "King")
             {
+                for(int i = - 1; i <= 1; i++)
+                {
+                    string tmp = HorizontalValues[myHorizontalKey + i] + (cellVerticalValue + 1);
+                    if (FiguresArrangement.ContainsKey(HorizontalValues[myHorizontalKey + i] + (cellHorizontalValue + 1)))
+                    {
 
+                    }
+                }
             }
 
 
