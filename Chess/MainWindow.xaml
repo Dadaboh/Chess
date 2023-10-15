@@ -8,7 +8,10 @@
         Title="MainWindow" Height="1000" Width="1200">
     <Grid x:Name="Decs" Width="1200" HorizontalAlignment="Left" Height="1000" VerticalAlignment="Top">
         <Grid.Background>
-            <ImageBrush/>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF949393"/>
+                <GradientStop Color="Gainsboro" Offset="1"/>
+            </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -360,7 +363,7 @@
                 <ImageBrush ImageSource="/1.jpg"/>
             </Button.Background>
         </Button>
-        <Label x:Name="DEB" Content="Label" HorizontalAlignment="Left" Margin="922,108,0,0" VerticalAlignment="Top" Height="83" Width="197"/>
+        <Label x:Name="DEB" Content="Label" HorizontalAlignment="Left" Margin="870,100,0,0" VerticalAlignment="Top" Height="83" Width="300"/>
 
     </Grid>
 </Window>

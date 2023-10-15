@@ -33,7 +33,7 @@ namespace Chess
             {
                 CellsInMove.Add(cell);
 
-                AvaliableCells.GetAvaliableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
+                AvaliableCells.GetAvaliableCells(ref CellsInMove, FiguresArrangement, ref avaliableCells, WhoseMove);
 
                 if (!avaliableCells.Contains(CellsInMove[1].Name))
                 {

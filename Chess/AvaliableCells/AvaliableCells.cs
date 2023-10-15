@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Chess
 {
@@ -36,40 +37,42 @@ namespace Chess
                 { 9 , "empty" },
          };
 
-        internal static void GetAvaliableCells(string cell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove)
+        internal static void GetAvaliableCells(ref List<Button> CellsInMove, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove, bool isKingsSafetyCheck = false)
         {
-            avaliableCells.Clear();
-
-            var cellHorizontalValue = cell.Substring(0, 1);
+            var cellHorizontalValue = CellsInMove[0].Name.Substring(0, 1);
             var myHorizontalKey = HorizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
-            var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
+            var cellVerticalValue = Convert.ToInt32(CellsInMove[0].Name.Substring(1, 1));
 
+            if(!isKingsSafetyCheck)
+            {
+                avaliableCells.Clear();
+            }
 
-            if (FiguresArrangement[cell].type == "Pawn")
+            if (FiguresArrangement[CellsInMove[0].Name].type == "Pawn")
             {
-                GetPawnAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetPawnAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if(FiguresArrangement[cell].type == "Knight")
+            else if(FiguresArrangement[CellsInMove[0].Name].type == "Knight")
             {
-                GetKnightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetKnightAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if (FiguresArrangement[cell].type == "Rook")
+            else if (FiguresArrangement[CellsInMove[0].Name].type == "Rook")
             {
-                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetStraightAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if (FiguresArrangement[cell].type == "Bishop")
+            else if (FiguresArrangement[CellsInMove[0].Name].type == "Bishop")
             {
-                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetDiagonalAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if (FiguresArrangement[cell].type == "Queen")
+            else if (FiguresArrangement[CellsInMove[0].Name].type == "Queen")
             {
-                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
-                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetStraightAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetDiagonalAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if (FiguresArrangement[cell].type == "King")
+            else if (FiguresArrangement[CellsInMove[0].Name].type == "King")
             {
-                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove, true);
-                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove, true);
+                GetStraightAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove, true);
+                GetDiagonalAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove, true);
             }
 
             //перевірити чи не підставляємо короля під удар
