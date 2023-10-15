@@ -100,7 +100,7 @@ namespace Chess
 
             var WhiteChess = new Dictionary<string, string>()
             {
-                { "Pawn"   , "\u2659" },
+                { "Pawn"   , "\b\u2659" },
                 { "Rook"   , "\u2656" },
                 { "Knight" , "\u2658" },
                 { "Bishop" , "\u2657" },

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Chess"
         mc:Ignorable="d"
         Title="MainWindow" Height="1000" Width="1200">
-    <Grid x:Name="Decs" Width="1200" HorizontalAlignment="Left" Height="1000" VerticalAlignment="Top" Background="#FFD8D2B8">
+    <Grid x:Name="Decs" Width="1200" HorizontalAlignment="Left" Height="1000" VerticalAlignment="Top" Background="#FFA4A4A4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
@@ -93,8 +93,12 @@
         <Button x:Name="G7" HorizontalAlignment="Left" Height="100" Width="100" Margin="650,200,0,0" VerticalAlignment="Top" FontSize="48" Background="#FF736258" Click="G7_Click"/>
         <Button x:Name="G8" HorizontalAlignment="Left" Height="100" Width="100" Margin="650,100,0,0" VerticalAlignment="Top" FontSize="48" Background="#FFD0D0CE" Click="G8_Click"/>
 
-        <Button x:Name="H1" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,800,0,0" VerticalAlignment="Top" FontSize="48" Background="#FFD0D0CE" Click="H1_Click"/>
-        <Button x:Name="H2" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,700,0,0" VerticalAlignment="Top" FontSize="48" Background="#FF736258" Click="H2_Click"/>
+        <Button x:Name="H1" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,800,0,0" VerticalAlignment="Top" FontSize="48" Background="#FFD0C9B7" Click="H1_Click"/>
+        <Button x:Name="H2" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,700,0,0" VerticalAlignment="Top" FontSize="48" Click="H2_Click">
+            <Button.Background>
+                <ImageBrush TileMode="None" ImageSource="/1.jpg"/>
+            </Button.Background>
+        </Button>
         <Button x:Name="H3" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,600,0,0" VerticalAlignment="Top" FontSize="48" Background="#FFD0D0CE" Click="H3_Click"/>
         <Button x:Name="H4" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,500,0,0" VerticalAlignment="Top" FontSize="48" Background="#FF736258" Click="H4_Click"/>
         <Button x:Name="H5" HorizontalAlignment="Left" Height="100" Width="100" Margin="750,400,0,0" VerticalAlignment="Top" FontSize="48" Background="#FFD0D0CE" Click="H5_Click"/>

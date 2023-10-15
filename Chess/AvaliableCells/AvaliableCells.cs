@@ -73,7 +73,7 @@ namespace Chess
             }
 
             //перевірити чи не підставляємо короля під удар
-            //CheckKingsSafety();
+            CheckKingsSafety();
         }
 
         private static void GetPawnAvailableCells(string cell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove)
@@ -377,6 +377,11 @@ namespace Chess
                     break;
                 }
             }
+        }
+
+        private static void CheckKingsSafety()
+        {
+
         }
 
     }
