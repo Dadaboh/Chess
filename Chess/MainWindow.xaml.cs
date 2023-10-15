@@ -100,7 +100,7 @@ namespace Chess
 
             var WhiteChess = new Dictionary<string, string>()
             {
-                { "Pawn"   , "\b\u2659" },
+                { "Pawn"   , "\u2659" },
                 { "Rook"   , "\u2656" },
                 { "Knight" , "\u2658" },
                 { "Bishop" , "\u2657" },
@@ -117,6 +117,7 @@ namespace Chess
                 { "Queen"  , "\u265B" },
                 { "King"   , "\u265A" },
             };
+
 
             A1.Content = WhiteChess["Rook"];
             B1.Content = WhiteChess["Knight"];
