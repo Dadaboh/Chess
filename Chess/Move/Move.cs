@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Chess.Move
+namespace Chess
 {
     internal static class Move
     {

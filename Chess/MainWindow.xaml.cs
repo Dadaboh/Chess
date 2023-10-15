@@ -29,6 +29,9 @@ namespace Chess
 
         static Rook whiteRook_1 = new Rook("White");
         static Rook whiteRook_2 = new Rook("White");
+        
+        static Knight whiteKnight_1 = new Knight("White");
+        static Knight whiteKnight_2 = new Knight("White");
 
         static Bishop whiteBishop_1 = new Bishop("White");
         static Bishop whiteBishop_2 = new Bishop("White");
@@ -47,6 +50,9 @@ namespace Chess
 
         static Rook blackRook_1 = new Rook("Black");
         static Rook blackRook_2 = new Rook("Black");
+        
+        static Knight blackKnight_1 = new Knight("Black");
+        static Knight blackKnight_2 = new Knight("Black");
 
         static Bishop blackBishop_1 = new Bishop("Black");
         static Bishop blackBishop_2 = new Bishop("Black");
@@ -65,16 +71,14 @@ namespace Chess
             { "F2" , whitePawn_6 },
             { "G2" , whitePawn_7 },
             { "H2" , whitePawn_8 },
-
             { "A1" , whiteRook_1 },
-            { "H1" , whiteRook_2 },
-
+            { "H1" , whiteRook_2 },        
+            { "B1" , whiteKnight_1 },
+            { "G1" , whiteKnight_2 },
             { "C1" , whiteBishop_1 },
             { "F1" , whiteBishop_2 },
-
             { "D1" , whiteQueen },
             { "E1" , whiteKing },
-
             { "A7" , blackPawn_1 },
             { "B7" , blackPawn_2 },
             { "C7" , blackPawn_3 },
@@ -83,13 +87,12 @@ namespace Chess
             { "F7" , blackPawn_6 },
             { "G7" , blackPawn_7 },
             { "H7" , blackPawn_8 },
-
             { "A8" , blackRook_1 },
-            { "H8" , blackRook_2 },
-
+            { "H8" , blackRook_2 },          
+            { "B8" , blackRook_1 },
+            { "G8" , blackRook_2 },
             { "C8" , blackBishop_1 },
             { "F8" , blackBishop_2 },
-
             { "D8" , blackQueen },
             { "E8" , blackKing },
         };
@@ -100,7 +103,6 @@ namespace Chess
         {
 
             InitializeComponent();
-
 
             #region Content
 
