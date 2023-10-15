@@ -9,7 +9,7 @@
     <Grid x:Name="Decs" Width="1200" HorizontalAlignment="Left" Height="1000" VerticalAlignment="Top">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF865A5A"/>
+                <GradientStop Color="#FFBB8181"/>
                 <GradientStop Color="#FFCA8E63" Offset="0.961"/>
             </LinearGradientBrush>
         </Grid.Background>
