@@ -75,8 +75,10 @@ namespace Chess
                 GetDiagonalAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove, true);
             }
 
-            //перевірити чи не підставляємо короля під удар
-            CheckKingsSafety();
+            if(!isKingsSafetyCheck)
+            {
+                CheckKingsSafety(ref CellsInMove, FiguresArrangement, WhoseMove);
+            }
         }
 
         private static void GetPawnAvailableCells(string cell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove)
@@ -382,8 +384,35 @@ namespace Chess
             }
         }
 
-        private static void CheckKingsSafety()
+        private static void CheckKingsSafety(ref List<Button> CellsInMove, Dictionary<string, Figure> possibleFiguresArrangement, string WhoseMove)
         {
+            var possibleAvaliableCells = new List<string>();
+
+            if (possibleFiguresArrangement.ContainsKey(CellsInMove[1].Name))
+            {
+                possibleFiguresArrangement.Remove(CellsInMove[1].Name);
+
+                possibleFiguresArrangement.Add(CellsInMove[1].Name, possibleFiguresArrangement[CellsInMove[0].Name]);
+                possibleFiguresArrangement.Remove(CellsInMove[0].Name);
+            }
+            else
+            {
+                possibleFiguresArrangement.Add(CellsInMove[1].Name, possibleFiguresArrangement[CellsInMove[0].Name]);
+                possibleFiguresArrangement.Remove(CellsInMove[0].Name);
+            }
+
+            foreach (var item in possibleFiguresArrangement)
+            {
+                if (item.Value.color == WhoseMove)
+                {
+                    continue;
+                }
+                else
+                {
+
+                }
+
+            }
 
         }
 
