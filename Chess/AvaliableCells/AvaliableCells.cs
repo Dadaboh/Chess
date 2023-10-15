@@ -71,8 +71,6 @@ namespace Chess
                 GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove, true);
             }
 
-
-
             //перевірити чи не підставляємо короля під удар
             //CheckKingsSafety();
         }

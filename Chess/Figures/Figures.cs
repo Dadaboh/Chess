@@ -12,6 +12,14 @@ namespace Chess
         public string type;
     }
 
+    internal class Pawn : Figure
+    {
+        public Pawn(string pawnColor)
+        {
+            color = pawnColor;
+            type = "Pawn";
+        }
+    }
 
     internal class Rook : Figure
     {

@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Packaging;
-using System.Linq;
-using System.Printing;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml;
+
 
 namespace Chess
 {
@@ -27,8 +14,7 @@ namespace Chess
         public List<Button> CellsInMove = new List<Button>();
         public List<string> avaliableCells = new List<string>();
 
-
-
+        
         List<string> History = new List<string>();
 
 
@@ -176,398 +162,327 @@ namespace Chess
             #endregion
         }
 
-
         #region Cells
         private void A1_Click(object sender, RoutedEventArgs e)
         {
-            Move(A1);
+            Move.MoveFigure(A1, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void A2_Click(object sender, RoutedEventArgs e)
         {
-            Move(A2);
+            Move.MoveFigure(A2, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void A3_Click(object sender, RoutedEventArgs e)
         {
-            Move(A3);
+            Move.MoveFigure(A3, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void A4_Click(object sender, RoutedEventArgs e)
         {
-            Move(A4);
+            Move.MoveFigure(A4, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void A5_Click(object sender, RoutedEventArgs e)
         {
-            Move(A5);
+            Move.MoveFigure(A5, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void A6_Click(object sender, RoutedEventArgs e)
         {
-            Move(A6);
+            Move.MoveFigure(A6, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void A7_Click(object sender, RoutedEventArgs e)
         {
-            Move(A7);
+            Move.MoveFigure(A7, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void A8_Click(object sender, RoutedEventArgs e)
         {
-            Move(A8);
+            Move.MoveFigure(A8, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void B1_Click(object sender, RoutedEventArgs e)
         {
-            Move(B1);
+            Move.MoveFigure(B1, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void B2_Click(object sender, RoutedEventArgs e)
         {
-            Move(B2);
+            Move.MoveFigure(B2, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void B3_Click(object sender, RoutedEventArgs e)
         {
-            Move(B3);
+            Move.MoveFigure(B3, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void B4_Click(object sender, RoutedEventArgs e)
         {
-            Move(B4);
+            Move.MoveFigure(B4, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void B5_Click(object sender, RoutedEventArgs e)
         {
-            Move(B5);
+            Move.MoveFigure(B5, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void B6_Click(object sender, RoutedEventArgs e)
         {
-            Move(B6);
+            Move.MoveFigure(B6, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void B7_Click(object sender, RoutedEventArgs e)
         {
-            Move(B7);
+            Move.MoveFigure(B7, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void B8_Click(object sender, RoutedEventArgs e)
         {
-            Move(B8);
+            Move.MoveFigure(B8, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void C1_Click(object sender, RoutedEventArgs e)
         {
-            Move(C1);
+            Move.MoveFigure(C1, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void C2_Click(object sender, RoutedEventArgs e)
         {
-            Move(C2);
+            Move.MoveFigure(C2, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void C3_Click(object sender, RoutedEventArgs e)
         {
-            Move(C3);
+            Move.MoveFigure(C3, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void C4_Click(object sender, RoutedEventArgs e)
         {
-            Move(C4);
+            Move.MoveFigure(C4, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void C5_Click(object sender, RoutedEventArgs e)
         {
-            Move(C5);
+            Move.MoveFigure(C5, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void C6_Click(object sender, RoutedEventArgs e)
         {
-            Move(C6);
+            Move.MoveFigure(C6, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void C7_Click(object sender, RoutedEventArgs e)
         {
-            Move(C7);
+            Move.MoveFigure(C7, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void C8_Click(object sender, RoutedEventArgs e)
         {
-            Move(C8);
+            Move.MoveFigure(C8, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void D1_Click(object sender, RoutedEventArgs e)
         {
-            Move(D1);
+            Move.MoveFigure(D1, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void D2_Click(object sender, RoutedEventArgs e)
         {
-            Move(D2);
+            Move.MoveFigure(D2, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void D3_Click(object sender, RoutedEventArgs e)
         {
-            Move(D3);
+            Move.MoveFigure(D3, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void D4_Click(object sender, RoutedEventArgs e)
         {
-            Move(D4);
+            Move.MoveFigure(D4, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void D5_Click(object sender, RoutedEventArgs e)
         {
-            Move(D5);
+            Move.MoveFigure(D5, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void D6_Click(object sender, RoutedEventArgs e)
         {
-            Move(D6);
+            Move.MoveFigure(D6, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void D7_Click(object sender, RoutedEventArgs e)
         {
-            Move(D7);
+            Move.MoveFigure(D7, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void D8_Click(object sender, RoutedEventArgs e)
         {
-            Move(D8);
+            Move.MoveFigure(D8, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void E1_Click(object sender, RoutedEventArgs e)
         {
-            Move(E1);
+            Move.MoveFigure(E1, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void E2_Click(object sender, RoutedEventArgs e)
         {
-            Move(E2);
+            Move.MoveFigure(E2, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void E3_Click(object sender, RoutedEventArgs e)
         {
-            Move(E3);
+            Move.MoveFigure(E3, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void E4_Click(object sender, RoutedEventArgs e)
         {
-            Move(E4);
+            Move.MoveFigure(E4, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void E5_Click(object sender, RoutedEventArgs e)
         {
-            Move(E5);
+            Move.MoveFigure(E5, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void E6_Click(object sender, RoutedEventArgs e)
         {
-            Move(E6);
+            Move.MoveFigure(E6, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void E7_Click(object sender, RoutedEventArgs e)
         {
-            Move(E7);
+            Move.MoveFigure(E7, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void E8_Click(object sender, RoutedEventArgs e)
         {
-            Move(E8);
+            Move.MoveFigure(E8, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void F1_Click(object sender, RoutedEventArgs e)
         {
-            Move(F1);
+            Move.MoveFigure(F1, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void F2_Click(object sender, RoutedEventArgs e)
         {
-            Move(F2);
+            Move.MoveFigure(F2, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void F3_Click(object sender, RoutedEventArgs e)
         {
-            Move(F3);
+            Move.MoveFigure(F3, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void F4_Click(object sender, RoutedEventArgs e)
         {
-            Move(F4);
+            Move.MoveFigure(F4, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void F5_Click(object sender, RoutedEventArgs e)
         {
-            Move(F5);
+            Move.MoveFigure(F5, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void F6_Click(object sender, RoutedEventArgs e)
         {
-            Move(F6);
+            Move.MoveFigure(F6, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void F7_Click(object sender, RoutedEventArgs e)
         {
-            Move(F7);
+            Move.MoveFigure(F7, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void F8_Click(object sender, RoutedEventArgs e)
         {
-            Move(F8);
+            Move.MoveFigure(F8, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void G1_Click(object sender, RoutedEventArgs e)
         {
-            Move(G1);
+            Move.MoveFigure(G1, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void G2_Click(object sender, RoutedEventArgs e)
         {
-            Move(G2);
+            Move.MoveFigure(G2, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void G3_Click(object sender, RoutedEventArgs e)
         {
-            Move(G3);
+            Move.MoveFigure(G3, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void G4_Click(object sender, RoutedEventArgs e)
         {
-            Move(G4);
+            Move.MoveFigure(G4, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void G5_Click(object sender, RoutedEventArgs e)
         {
-            Move(G5);
+            Move.MoveFigure(G5, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void G6_Click(object sender, RoutedEventArgs e)
         {
-            Move(G6);
+            Move.MoveFigure(G6, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void G7_Click(object sender, RoutedEventArgs e)
         {
-            Move(G7);
+            Move.MoveFigure(G7, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void G8_Click(object sender, RoutedEventArgs e)
         {
-            Move(G8);
+            Move.MoveFigure(G8, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void H1_Click(object sender, RoutedEventArgs e)
         {
-            Move(H1);
+            Move.MoveFigure(H1, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void H2_Click(object sender, RoutedEventArgs e)
         {
-            Move(H2);
+            Move.MoveFigure(H2, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void H3_Click(object sender, RoutedEventArgs e)
         {
-            Move(H3);
+            Move.MoveFigure(H3, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void H4_Click(object sender, RoutedEventArgs e)
         {
-            Move(H4);
+            Move.MoveFigure(H4, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void H5_Click(object sender, RoutedEventArgs e)
         {
-            Move(H5);
+            Move.MoveFigure(H5, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void H6_Click(object sender, RoutedEventArgs e)
         {
-            Move(H6);
+            Move.MoveFigure(H6, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void H7_Click(object sender, RoutedEventArgs e)
         {
-            Move(H7);
+            Move.MoveFigure(H7, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
 
         private void H8_Click(object sender, RoutedEventArgs e)
         {
-            Move(H8);
+            Move.MoveFigure(H8, DEB, ref FiguresArrangement, ref avaliableCells, ref CellsInMove, ref WhoseMove);
         }
-        #endregion
+        #endregion 
 
-        #region Move
-        private void Move(Button cell)
-        {
-            if (CellsInMove.Count == 0 && !FiguresArrangement.ContainsKey(cell.Name))
-            {
-                DEB.Content = "Перша клітинка має містити фігуру";
-            }
-            else if(CellsInMove.Count == 0 && FiguresArrangement.ContainsKey(cell.Name) && FiguresArrangement[cell.Name].color != WhoseMove)
-            {
-                DEB.Content = $"Зараз мають ходити {(WhoseMove == "White" ? "білі" : "чорні")}";
-            }
-            else if (CellsInMove.Count == 0 && FiguresArrangement.ContainsKey(cell.Name) && FiguresArrangement[cell.Name].color == WhoseMove)
-            {
-                DEB.Content = $"{cell.Name}";
-                CellsInMove.Add(cell);
-            }
-            else if (CellsInMove.Count == 1 && cell == CellsInMove[0])
-            {
-                DEB.Content = "Однакова клітинка";
-                CellsInMove.Clear();
-            }
-            else if (CellsInMove.Count == 1 && cell != CellsInMove[0])
-            {
-                CellsInMove.Add(cell);
-
-                AvaliableCells.GetAvaliableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
-
-                if(!avaliableCells.Contains(CellsInMove[1].Name))
-                {
-                    DEB.Content = "Недоступний хід";
-                    CellsInMove.Clear();
-                }
-                else if (avaliableCells.Contains(CellsInMove[1].Name))
-                {
-                    CellsInMove[1].Content = CellsInMove[0].Content;
-                    CellsInMove[0].Content = string.Empty;
-
-                    if (FiguresArrangement.ContainsKey(CellsInMove[1].Name))
-                    {
-                        FiguresArrangement.Remove(CellsInMove[1].Name);
-
-                        FiguresArrangement.Add(CellsInMove[1].Name, FiguresArrangement[CellsInMove[0].Name]);
-                        FiguresArrangement.Remove(CellsInMove[0].Name);
-                    }
-                    else
-                    {
-                        FiguresArrangement.Add(CellsInMove[1].Name, FiguresArrangement[CellsInMove[0].Name]);
-                        FiguresArrangement.Remove(CellsInMove[0].Name);
-                    }
-
-                    History.Add($"{CellsInMove[0].Name} => {CellsInMove[1].Name}");
-
-                    CellsInMove.Clear();
-
-                    WhoseMove = (WhoseMove == "White" ? "Black" : "White");
-                }
-
-            }
-        }
-        #endregion
-
-        
-
-
-       
-
-        private void CheckKingsSafety()
-        {
-            //чи не підставляємо короля під удар
-        }
     }
 }
