@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Chess
@@ -10,14 +12,13 @@ namespace Chess
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string WhoseMove = "White";
-        public List<Button> CellsInMove = new List<Button>();
-        public List<string> avaliableCells = new List<string>();
-
-        
+        internal static string WhoseMove = "White";
+        internal static List<Button> CellsInMove = new List<Button>();
+        internal static List<string> avaliableCells = new List<string>();
+    
         List<string> History = new List<string>();
 
-
+        #region FiguresCreations
         static Pawn whitePawn_1 = new Pawn("White");
         static Pawn whitePawn_2 = new Pawn("White");
         static Pawn whitePawn_3 = new Pawn("White");
@@ -26,16 +27,12 @@ namespace Chess
         static Pawn whitePawn_6 = new Pawn("White");
         static Pawn whitePawn_7 = new Pawn("White");
         static Pawn whitePawn_8 = new Pawn("White");
-
         static Rook whiteRook_1 = new Rook("White");
-        static Rook whiteRook_2 = new Rook("White");
-        
+        static Rook whiteRook_2 = new Rook("White"); 
         static Knight whiteKnight_1 = new Knight("White");
         static Knight whiteKnight_2 = new Knight("White");
-
         static Bishop whiteBishop_1 = new Bishop("White");
         static Bishop whiteBishop_2 = new Bishop("White");
-
         static Queen whiteQueen = new Queen("White");
         static King whiteKing = new King("White");
 
@@ -47,19 +44,15 @@ namespace Chess
         static Pawn blackPawn_6 = new Pawn("Black");
         static Pawn blackPawn_7 = new Pawn("Black");
         static Pawn blackPawn_8 = new Pawn("Black");
-
         static Rook blackRook_1 = new Rook("Black");
-        static Rook blackRook_2 = new Rook("Black");
-        
+        static Rook blackRook_2 = new Rook("Black");      
         static Knight blackKnight_1 = new Knight("Black");
         static Knight blackKnight_2 = new Knight("Black");
-
         static Bishop blackBishop_1 = new Bishop("Black");
         static Bishop blackBishop_2 = new Bishop("Black");
-
         static Queen blackQueen = new Queen("Black");
         static King blackKing = new King("Black");
-
+        #endregion
 
         Dictionary<string, Figure> FiguresArrangement = new Dictionary<string, Figure>()
         {
@@ -89,8 +82,8 @@ namespace Chess
             { "H7" , blackPawn_8 },
             { "A8" , blackRook_1 },
             { "H8" , blackRook_2 },          
-            { "B8" , blackRook_1 },
-            { "G8" , blackRook_2 },
+            { "B8" , blackKnight_1 },
+            { "G8" , blackKnight_2 },
             { "C8" , blackBishop_1 },
             { "F8" , blackBishop_2 },
             { "D8" , blackQueen },
@@ -101,7 +94,6 @@ namespace Chess
 
         public MainWindow()
         {
-
             InitializeComponent();
 
             #region Content
