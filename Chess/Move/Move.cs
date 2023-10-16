@@ -35,14 +35,14 @@ namespace Chess
 
                 AvaliableCells.GetAvaliableCells(CellsInMove[0].Name, CellsInMove[1].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
 
-                if (!avaliableCells.Contains(CellsInMove[1].Name))
-                {
-                    DEB.Content = "Недоступний хід";
-                    CellsInMove.Clear();
-                }
-                if(avaliableCells.Contains("check kings safety result - false"))
+                if (avaliableCells.Contains("check kings safety result - false"))
                 {
                     DEB.Content = "Підставляємо короля під удар.";
+                    CellsInMove.Clear();
+                }
+                else if (!avaliableCells.Contains(CellsInMove[1].Name))
+                {
+                    DEB.Content = "Недоступний хід";
                     CellsInMove.Clear();
                 }
                 else if (avaliableCells.Contains(CellsInMove[1].Name))

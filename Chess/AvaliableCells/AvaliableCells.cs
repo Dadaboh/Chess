@@ -388,6 +388,13 @@ namespace Chess
         {
             var possibleAvaliableCells = new List<string>();
             var possibleFiguresArrangement = new Dictionary<string, Figure>();
+            var inverseWhoseMove = $"{(WhoseMove == "White" ? "Black" : "White")}";
+
+            if (FiguresArrangement.ContainsKey(secondCell) && FiguresArrangement[secondCell].color == WhoseMove)
+            {
+                avaliableCells.Clear();
+                return;
+            }
 
             foreach(var item in FiguresArrangement)
             {
@@ -415,8 +422,6 @@ namespace Chess
                 }
                 else
                 {
-                    var inverseWhoseMove = $"{(WhoseMove == "White" ? "Black" : "White")}";
-
                     GetAvaliableCells(item.Key, "", possibleFiguresArrangement, ref possibleAvaliableCells, inverseWhoseMove, true);
                 }
 
