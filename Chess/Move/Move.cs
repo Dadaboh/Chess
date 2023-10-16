@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -69,7 +70,6 @@ namespace Chess
 
                     whoseMove = whoseMove == "White" ? "Black" : "White";
                 }
-
             }
         }
     }

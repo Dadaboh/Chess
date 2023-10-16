@@ -391,7 +391,7 @@ namespace Chess
             var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
 
 
-            //перевірка, щоб не взяти фігуру свого кольору
+            //перевірка, щоб не взяти свою фігуру
             if (figuresArrangement.ContainsKey(secondCell) && figuresArrangement[secondCell].color == whoseMove)
             {
                 avaliableCells.Clear();

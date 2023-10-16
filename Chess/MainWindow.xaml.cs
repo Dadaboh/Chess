@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
 using static System.Net.Mime.MediaTypeNames;
@@ -175,6 +176,8 @@ namespace Chess
 
         private void A4_Click(object sender, RoutedEventArgs e)
         {
+            A4.IsTabStop = true;
+
             Move.MoveFigure(A4, DEB, ref figuresArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
         }
 
@@ -478,6 +481,6 @@ namespace Chess
             Move.MoveFigure(H8, DEB, ref figuresArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
         }
         #endregion 
-
+        
     }
 }
