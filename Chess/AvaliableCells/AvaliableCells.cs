@@ -37,47 +37,47 @@ namespace Chess
                 { 9 , "empty" },
          };
 
-        internal static void GetAvaliableCells(ref List<Button> CellsInMove, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove, bool isKingsSafetyCheck = false)
+        internal static void GetAvaliableCells(string cell, string secondCell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove, bool isKingsSafetyCheck = false)
         {
-            var cellHorizontalValue = CellsInMove[0].Name.Substring(0, 1);
+            var cellHorizontalValue = cell.Substring(0, 1);
             var myHorizontalKey = HorizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
-            var cellVerticalValue = Convert.ToInt32(CellsInMove[0].Name.Substring(1, 1));
+            var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
 
             if(!isKingsSafetyCheck)
             {
                 avaliableCells.Clear();
             }
 
-            if (FiguresArrangement[CellsInMove[0].Name].type == "Pawn")
+            if (FiguresArrangement[cell].type == "Pawn")
             {
-                GetPawnAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetPawnAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if(FiguresArrangement[CellsInMove[0].Name].type == "Knight")
+            else if(FiguresArrangement[cell].type == "Knight")
             {
-                GetKnightAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetKnightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if (FiguresArrangement[CellsInMove[0].Name].type == "Rook")
+            else if (FiguresArrangement[cell].type == "Rook")
             {
-                GetStraightAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if (FiguresArrangement[CellsInMove[0].Name].type == "Bishop")
+            else if (FiguresArrangement[cell].type == "Bishop")
             {
-                GetDiagonalAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if (FiguresArrangement[CellsInMove[0].Name].type == "Queen")
+            else if (FiguresArrangement[cell].type == "Queen")
             {
-                GetStraightAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
-                GetDiagonalAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
-            else if (FiguresArrangement[CellsInMove[0].Name].type == "King")
+            else if (FiguresArrangement[cell].type == "King")
             {
-                GetStraightAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove, true);
-                GetDiagonalAvailableCells(CellsInMove[0].Name, FiguresArrangement, ref avaliableCells, WhoseMove, true);
+                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove, true);
+                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove, true);
             }
 
             if(!isKingsSafetyCheck)
             {
-                CheckKingsSafety(ref CellsInMove, FiguresArrangement, WhoseMove);
+                CheckKingsSafety(cell, secondCell, FiguresArrangement, ref avaliableCells, WhoseMove);
             }
         }
 
@@ -384,21 +384,27 @@ namespace Chess
             }
         }
 
-        private static void CheckKingsSafety(ref List<Button> CellsInMove, Dictionary<string, Figure> possibleFiguresArrangement, string WhoseMove)
+        private static void CheckKingsSafety(string cell, string secondCell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove)
         {
             var possibleAvaliableCells = new List<string>();
+            var possibleFiguresArrangement = new Dictionary<string, Figure>();
 
-            if (possibleFiguresArrangement.ContainsKey(CellsInMove[1].Name))
+            foreach(var item in FiguresArrangement)
             {
-                possibleFiguresArrangement.Remove(CellsInMove[1].Name);
+                possibleFiguresArrangement.Add(item.Key, item.Value);
+            }
 
-                possibleFiguresArrangement.Add(CellsInMove[1].Name, possibleFiguresArrangement[CellsInMove[0].Name]);
-                possibleFiguresArrangement.Remove(CellsInMove[0].Name);
+            if (possibleFiguresArrangement.ContainsKey(secondCell))
+            {
+                possibleFiguresArrangement.Remove(secondCell);
+
+                possibleFiguresArrangement.Add(secondCell, possibleFiguresArrangement[cell]);
+                possibleFiguresArrangement.Remove(cell);
             }
             else
             {
-                possibleFiguresArrangement.Add(CellsInMove[1].Name, possibleFiguresArrangement[CellsInMove[0].Name]);
-                possibleFiguresArrangement.Remove(CellsInMove[0].Name);
+                possibleFiguresArrangement.Add(secondCell, possibleFiguresArrangement[cell]);
+                possibleFiguresArrangement.Remove(cell);
             }
 
             foreach (var item in possibleFiguresArrangement)
@@ -409,9 +415,17 @@ namespace Chess
                 }
                 else
                 {
+                    var inverseWhoseMove = $"{(WhoseMove == "White" ? "Black" : "White")}";
 
+                    GetAvaliableCells(item.Key, "", possibleFiguresArrangement, ref possibleAvaliableCells, inverseWhoseMove, true);
                 }
 
+                if(possibleAvaliableCells.Contains(possibleFiguresArrangement.Where(w => w.Value.type == "King" && w.Value.color == WhoseMove).First().Key))
+                {
+                    avaliableCells.Clear();
+                    avaliableCells.Add("check kings safety result - false");
+                    break;
+                }
             }
 
         }
