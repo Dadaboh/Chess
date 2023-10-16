@@ -97,8 +97,6 @@ namespace Chess
         {
             InitializeComponent();
 
-            #region Content
-
             var WhiteChess = new Dictionary<string, string>()
             {
                 { "Pawn"   , "\u2659" },
@@ -118,7 +116,6 @@ namespace Chess
                 { "Queen"  , "\u265B" },
                 { "King"   , "\u265A" },
             };
-
 
             A1.Content = WhiteChess["Rook"];
             B1.Content = WhiteChess["Knight"];
@@ -155,7 +152,6 @@ namespace Chess
             F7.Content = BlackChess["Pawn"];
             G7.Content = BlackChess["Pawn"];
             H7.Content = BlackChess["Pawn"];
-            #endregion
         }
 
         #region Cells
@@ -175,9 +171,7 @@ namespace Chess
         }
 
         private void A4_Click(object sender, RoutedEventArgs e)
-        {
-            A4.IsTabStop = true;
-
+        {   
             Move.MoveFigure(A4, DEB, ref figuresArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
         }
 
