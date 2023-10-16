@@ -410,7 +410,7 @@ namespace Chess
                 possibleFiguresArrangement.Add(secondCell, possibleFiguresArrangement[cell]);
                 possibleFiguresArrangement.Remove(cell);
             }
-            else
+            else if(!possibleFiguresArrangement.ContainsKey(secondCell))
             {
                 possibleFiguresArrangement.Add(secondCell, possibleFiguresArrangement[cell]);
                 possibleFiguresArrangement.Remove(cell);

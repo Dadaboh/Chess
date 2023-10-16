@@ -80,7 +80,36 @@ namespace Chess
                         }
                     }
 
-                        cellsInMove.Clear();
+                    ////перевіряємо чи є доступні ходи для ворожої команди
+                    //{
+                    //    var possibleOpponentsMoves = new List<string>();
+                    //    var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
+
+                    //    foreach (var item in figuresArrangement)
+                    //    {
+                    //        if (item.Value.color == whoseMove)
+                    //        {
+                    //            continue;
+                    //        }
+                    //        else
+                    //        {
+                    //            AvaliableCells.GetAvaliableCells(item.Key, item.Key, figuresArrangement, ref avaliableCells, inverseWhoseMove);
+                    //        }
+
+                    //        foreach (var str in avaliableCells)
+                    //        {
+                    //            possibleOpponentsMoves.Add(str);
+                    //        }
+                    //    }
+
+                    //    if (possibleOpponentsMoves.Any())
+                    //    {
+                    //        Console.WriteLine();
+                    //    }
+
+                    //}
+
+                    cellsInMove.Clear();
                     whoseMove = whoseMove == "White" ? "Black" : "White";
                 }
             }
