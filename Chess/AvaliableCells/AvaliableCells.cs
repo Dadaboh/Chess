@@ -9,7 +9,7 @@ namespace Chess
 {
     internal static class AvaliableCells
     {
-        internal static Dictionary<int, string> VerticalValues = new Dictionary<int, string>
+        internal static Dictionary<int, string> verticalValues = new Dictionary<int, string>
         {
                 { 0 , "empty" },
                 { 1 , "1" },
@@ -23,7 +23,7 @@ namespace Chess
                 { 9 , "empty" },
          };
 
-        public static  Dictionary<int, string> HorizontalValues = new Dictionary<int, string>
+        public static  Dictionary<int, string> horizontalValues = new Dictionary<int, string>
          {
                 { 0 , "empty" },
                 { 1 , "A" },
@@ -37,10 +37,10 @@ namespace Chess
                 { 9 , "empty" },
          };
 
-        internal static void GetAvaliableCells(string cell, string secondCell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove, bool isKingsSafetyCheck = false)
+        internal static void GetAvaliableCells(string cell, string secondCell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKingsSafetyCheck = false)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
-            var myHorizontalKey = HorizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
+            var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
             var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
 
             if(!isKingsSafetyCheck)
@@ -48,138 +48,138 @@ namespace Chess
                 avaliableCells.Clear();
             }
 
-            if (FiguresArrangement[cell].type == "Pawn")
+            if (figuresArrangement[cell].type == "Pawn")
             {
-                GetPawnAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetPawnAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if(FiguresArrangement[cell].type == "Knight")
+            else if(figuresArrangement[cell].type == "Knight")
             {
-                GetKnightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetKnightAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if (FiguresArrangement[cell].type == "Rook")
+            else if (figuresArrangement[cell].type == "Rook")
             {
-                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetStraightAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if (FiguresArrangement[cell].type == "Bishop")
+            else if (figuresArrangement[cell].type == "Bishop")
             {
-                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetDiagonalAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if (FiguresArrangement[cell].type == "Queen")
+            else if (figuresArrangement[cell].type == "Queen")
             {
-                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
-                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                GetStraightAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
+                GetDiagonalAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if (FiguresArrangement[cell].type == "King")
+            else if (figuresArrangement[cell].type == "King")
             {
-                GetStraightAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove, true);
-                GetDiagonalAvailableCells(cell, FiguresArrangement, ref avaliableCells, WhoseMove, true);
+                GetStraightAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove, true);
+                GetDiagonalAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove, true);
             }
 
             if(!isKingsSafetyCheck)
             {
-                CheckKingsSafety(cell, secondCell, FiguresArrangement, ref avaliableCells, WhoseMove);
+                CheckKingsSafety(cell, secondCell, figuresArrangement, ref avaliableCells, whoseMove);
             }
         }
 
-        private static void GetPawnAvailableCells(string cell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove)
+        private static void GetPawnAvailableCells(string cell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
-            var myHorizontalKey = HorizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
+            var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
             var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
 
-            if (FiguresArrangement[cell].color == "White" && cellVerticalValue < 8)
+            if (figuresArrangement[cell].color == "White" && cellVerticalValue < 8)
             {
-                if (!FiguresArrangement.ContainsKey(cellHorizontalValue + (cellVerticalValue + 1).ToString()))
+                if (!figuresArrangement.ContainsKey(cellHorizontalValue + (cellVerticalValue + 1).ToString()))
                 {
                     avaliableCells.Add(cellHorizontalValue + (cellVerticalValue + 1).ToString());
                 }
 
-                if (cellVerticalValue == 2 && !FiguresArrangement.ContainsKey(cellHorizontalValue + "4") && !FiguresArrangement.ContainsKey(cellHorizontalValue + "3"))
+                if (cellVerticalValue == 2 && !figuresArrangement.ContainsKey(cellHorizontalValue + "4") && !figuresArrangement.ContainsKey(cellHorizontalValue + "3"))
                 {
                     avaliableCells.Add(cellHorizontalValue + "4");
                 }
 
                 //перевіряємо чи є фігури які можна забрати
-                var tmp = HorizontalValues[myHorizontalKey + 1] + VerticalValues[cellVerticalValue + 1];
+                var tmp = horizontalValues[myHorizontalKey + 1] + verticalValues[cellVerticalValue + 1];
 
-                if (FiguresArrangement.ContainsKey(tmp) && FiguresArrangement[tmp].color != WhoseMove)
+                if (figuresArrangement.ContainsKey(tmp) && figuresArrangement[tmp].color != whoseMove)
                 {
                     avaliableCells.Add(tmp);
                 }
 
-                tmp = HorizontalValues[myHorizontalKey - 1] + VerticalValues[cellVerticalValue + 1];
+                tmp = horizontalValues[myHorizontalKey - 1] + verticalValues[cellVerticalValue + 1];
 
-                if (FiguresArrangement.ContainsKey(tmp) && FiguresArrangement[tmp].color != WhoseMove)
+                if (figuresArrangement.ContainsKey(tmp) && figuresArrangement[tmp].color != whoseMove)
                 {
                     avaliableCells.Add(tmp);
                 }
             }
-            else if (FiguresArrangement[cell].color == "Black" && cellVerticalValue > 1)
+            else if (figuresArrangement[cell].color == "Black" && cellVerticalValue > 1)
             {
-                if (!FiguresArrangement.ContainsKey(cellHorizontalValue + (cellVerticalValue - 1).ToString()))
+                if (!figuresArrangement.ContainsKey(cellHorizontalValue + (cellVerticalValue - 1).ToString()))
                 {
                     avaliableCells.Add(cellHorizontalValue + (cellVerticalValue - 1).ToString());
                 }
 
-                if (cellVerticalValue == 7 && !FiguresArrangement.ContainsKey(cellHorizontalValue + "5") && !FiguresArrangement.ContainsKey(cellHorizontalValue + "6"))
+                if (cellVerticalValue == 7 && !figuresArrangement.ContainsKey(cellHorizontalValue + "5") && !figuresArrangement.ContainsKey(cellHorizontalValue + "6"))
                 {
                     avaliableCells.Add(cellHorizontalValue + "5");
                 }
 
                 //перевіряємо чи є фігури які можна забрати
-                var tmp = HorizontalValues[myHorizontalKey + 1] + VerticalValues[cellVerticalValue - 1];
+                var tmp = horizontalValues[myHorizontalKey + 1] + verticalValues[cellVerticalValue - 1];
 
-                if (FiguresArrangement.ContainsKey(tmp) && FiguresArrangement[tmp].color != WhoseMove)
+                if (figuresArrangement.ContainsKey(tmp) && figuresArrangement[tmp].color != whoseMove)
                 {
                     avaliableCells.Add(tmp);
                 }
 
-                tmp = HorizontalValues[myHorizontalKey - 1] + VerticalValues[cellVerticalValue - 1];
+                tmp = horizontalValues[myHorizontalKey - 1] + verticalValues[cellVerticalValue - 1];
 
-                if (FiguresArrangement.ContainsKey(tmp) && FiguresArrangement[tmp].color != WhoseMove)
+                if (figuresArrangement.ContainsKey(tmp) && figuresArrangement[tmp].color != whoseMove)
                 {
                     avaliableCells.Add(tmp);
                 }
             }
         }
 
-        private static void GetKnightAvailableCells(string cell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove)
+        private static void GetKnightAvailableCells(string cell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
-            var myHorizontalKey = HorizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
+            var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
             var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
 
-            if (HorizontalValues.ContainsKey(myHorizontalKey + 2) && VerticalValues.ContainsKey(cellVerticalValue + 1))
+            if (horizontalValues.ContainsKey(myHorizontalKey + 2) && verticalValues.ContainsKey(cellVerticalValue + 1))
             {
-                avaliableCells.Add(HorizontalValues[myHorizontalKey + 2] + VerticalValues[cellVerticalValue + 1]);
+                avaliableCells.Add(horizontalValues[myHorizontalKey + 2] + verticalValues[cellVerticalValue + 1]);
             }
-            if (HorizontalValues.ContainsKey(myHorizontalKey + 2) && VerticalValues.ContainsKey(cellVerticalValue - 1))
+            if (horizontalValues.ContainsKey(myHorizontalKey + 2) && verticalValues.ContainsKey(cellVerticalValue - 1))
             {
-                avaliableCells.Add(HorizontalValues[myHorizontalKey + 2] + VerticalValues[cellVerticalValue - 1]);
+                avaliableCells.Add(horizontalValues[myHorizontalKey + 2] + verticalValues[cellVerticalValue - 1]);
             }
-            if (HorizontalValues.ContainsKey(myHorizontalKey - 2) && VerticalValues.ContainsKey(cellVerticalValue + 1))
+            if (horizontalValues.ContainsKey(myHorizontalKey - 2) && verticalValues.ContainsKey(cellVerticalValue + 1))
             {
-                avaliableCells.Add(HorizontalValues[myHorizontalKey - 2] + VerticalValues[cellVerticalValue + 1]);
+                avaliableCells.Add(horizontalValues[myHorizontalKey - 2] + verticalValues[cellVerticalValue + 1]);
             }
-            if (HorizontalValues.ContainsKey(myHorizontalKey - 2) && VerticalValues.ContainsKey(cellVerticalValue - 1))
+            if (horizontalValues.ContainsKey(myHorizontalKey - 2) && verticalValues.ContainsKey(cellVerticalValue - 1))
             {
-                avaliableCells.Add(HorizontalValues[myHorizontalKey - 2] + VerticalValues[cellVerticalValue - 1]);
+                avaliableCells.Add(horizontalValues[myHorizontalKey - 2] + verticalValues[cellVerticalValue - 1]);
             }
-            if (HorizontalValues.ContainsKey(myHorizontalKey + 1) && VerticalValues.ContainsKey(cellVerticalValue + 2))
+            if (horizontalValues.ContainsKey(myHorizontalKey + 1) && verticalValues.ContainsKey(cellVerticalValue + 2))
             {
-                avaliableCells.Add(HorizontalValues[myHorizontalKey + 1] + VerticalValues[cellVerticalValue + 2]);
+                avaliableCells.Add(horizontalValues[myHorizontalKey + 1] + verticalValues[cellVerticalValue + 2]);
             }
-            if (HorizontalValues.ContainsKey(myHorizontalKey + 1) && VerticalValues.ContainsKey(cellVerticalValue - 2))
+            if (horizontalValues.ContainsKey(myHorizontalKey + 1) && verticalValues.ContainsKey(cellVerticalValue - 2))
             {
-                avaliableCells.Add(HorizontalValues[myHorizontalKey + 1] + VerticalValues[cellVerticalValue - 2]);
+                avaliableCells.Add(horizontalValues[myHorizontalKey + 1] + verticalValues[cellVerticalValue - 2]);
             }
-            if (HorizontalValues.ContainsKey(myHorizontalKey - 1) && VerticalValues.ContainsKey(cellVerticalValue + 2))
+            if (horizontalValues.ContainsKey(myHorizontalKey - 1) && verticalValues.ContainsKey(cellVerticalValue + 2))
             {
-                avaliableCells.Add(HorizontalValues[myHorizontalKey - 1] + VerticalValues[cellVerticalValue + 2]);
+                avaliableCells.Add(horizontalValues[myHorizontalKey - 1] + verticalValues[cellVerticalValue + 2]);
             }
-            if (HorizontalValues.ContainsKey(myHorizontalKey - 1) && VerticalValues.ContainsKey(cellVerticalValue - 2))
+            if (horizontalValues.ContainsKey(myHorizontalKey - 1) && verticalValues.ContainsKey(cellVerticalValue - 2))
             {
-                avaliableCells.Add(HorizontalValues[myHorizontalKey - 1] + VerticalValues[cellVerticalValue - 2]);
+                avaliableCells.Add(horizontalValues[myHorizontalKey - 1] + verticalValues[cellVerticalValue - 2]);
             }
 
             var wrongCells = new List<string>();
@@ -190,7 +190,7 @@ namespace Chess
                 {
                     wrongCells.Add(item);
                 }
-                if(FiguresArrangement.ContainsKey(item) && FiguresArrangement[item].color == WhoseMove)
+                if(figuresArrangement.ContainsKey(item) && figuresArrangement[item].color == whoseMove)
                 {
                     wrongCells.Add(item);
                 }
@@ -202,23 +202,23 @@ namespace Chess
             }
         }
 
-        private static void GetStraightAvailableCells(string cell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove, bool isKing = false)
+        private static void GetStraightAvailableCells(string cell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKing = false)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
-            var myHorizontalKey = HorizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
+            var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
             var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
 
             for (int i = cellVerticalValue + 1; i <= 8; i++)
             {
-                if (FiguresArrangement.ContainsKey(cellHorizontalValue + i) && FiguresArrangement[cellHorizontalValue + i].color == WhoseMove)
+                if (figuresArrangement.ContainsKey(cellHorizontalValue + i) && figuresArrangement[cellHorizontalValue + i].color == whoseMove)
                 {
                     break;
                 }
-                else if (!FiguresArrangement.ContainsKey(cellHorizontalValue + i))
+                else if (!figuresArrangement.ContainsKey(cellHorizontalValue + i))
                 {
                     avaliableCells.Add(cellHorizontalValue + i);
                 }
-                else if (FiguresArrangement.ContainsKey(cellHorizontalValue + i) && FiguresArrangement[cellHorizontalValue + i].color != WhoseMove)
+                else if (figuresArrangement.ContainsKey(cellHorizontalValue + i) && figuresArrangement[cellHorizontalValue + i].color != whoseMove)
                 {
                     avaliableCells.Add(cellHorizontalValue + i);
                     break;
@@ -231,15 +231,15 @@ namespace Chess
 
             for (int i = cellVerticalValue - 1; i >= 1; i--)
             {
-                if (FiguresArrangement.ContainsKey(cellHorizontalValue + i) && FiguresArrangement[cellHorizontalValue + i].color == WhoseMove)
+                if (figuresArrangement.ContainsKey(cellHorizontalValue + i) && figuresArrangement[cellHorizontalValue + i].color == whoseMove)
                 {
                     break;
                 }
-                else if (!FiguresArrangement.ContainsKey(cellHorizontalValue + i))
+                else if (!figuresArrangement.ContainsKey(cellHorizontalValue + i))
                 {
                     avaliableCells.Add(cellHorizontalValue + i);
                 }
-                else if (FiguresArrangement.ContainsKey(cellHorizontalValue + i) && FiguresArrangement[cellHorizontalValue + i].color != WhoseMove)
+                else if (figuresArrangement.ContainsKey(cellHorizontalValue + i) && figuresArrangement[cellHorizontalValue + i].color != whoseMove)
                 {
                     avaliableCells.Add(cellHorizontalValue + i);
                     break;
@@ -252,17 +252,17 @@ namespace Chess
 
             for (int i = myHorizontalKey + 1; i <= 8; i++)
             {
-                if (FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue) && FiguresArrangement[HorizontalValues[i] + cellVerticalValue].color == WhoseMove)
+                if (figuresArrangement.ContainsKey(horizontalValues[i] + cellVerticalValue) && figuresArrangement[horizontalValues[i] + cellVerticalValue].color == whoseMove)
                 {
                     break;
                 }
-                else if (!FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue))
+                else if (!figuresArrangement.ContainsKey(horizontalValues[i] + cellVerticalValue))
                 {
-                    avaliableCells.Add(HorizontalValues[i] + cellVerticalValue);
+                    avaliableCells.Add(horizontalValues[i] + cellVerticalValue);
                 }
-                else if (FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue) && FiguresArrangement[HorizontalValues[i] + cellVerticalValue].color != WhoseMove)
+                else if (figuresArrangement.ContainsKey(horizontalValues[i] + cellVerticalValue) && figuresArrangement[horizontalValues[i] + cellVerticalValue].color != whoseMove)
                 {
-                    avaliableCells.Add(HorizontalValues[i] + cellVerticalValue);
+                    avaliableCells.Add(horizontalValues[i] + cellVerticalValue);
                     break;
                 }
                 if (isKing)
@@ -273,17 +273,17 @@ namespace Chess
 
             for (int i = myHorizontalKey - 1; i >= 1; i--)
             {
-                if (FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue) && FiguresArrangement[HorizontalValues[i] + cellVerticalValue].color == WhoseMove)
+                if (figuresArrangement.ContainsKey(horizontalValues[i] + cellVerticalValue) && figuresArrangement[horizontalValues[i] + cellVerticalValue].color == whoseMove)
                 {
                     break;
                 }
-                else if (!FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue))
+                else if (!figuresArrangement.ContainsKey(horizontalValues[i] + cellVerticalValue))
                 {
-                    avaliableCells.Add(HorizontalValues[i] + cellVerticalValue);
+                    avaliableCells.Add(horizontalValues[i] + cellVerticalValue);
                 }
-                else if (FiguresArrangement.ContainsKey(HorizontalValues[i] + cellVerticalValue) && FiguresArrangement[HorizontalValues[i] + cellVerticalValue].color != WhoseMove)
+                else if (figuresArrangement.ContainsKey(horizontalValues[i] + cellVerticalValue) && figuresArrangement[horizontalValues[i] + cellVerticalValue].color != whoseMove)
                 {
-                    avaliableCells.Add(HorizontalValues[i] + cellVerticalValue);
+                    avaliableCells.Add(horizontalValues[i] + cellVerticalValue);
                     break;
                 }
                 if (isKing)
@@ -293,25 +293,25 @@ namespace Chess
             }
         }
 
-        private static void GetDiagonalAvailableCells(string cell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove, bool isKing = false)
+        private static void GetDiagonalAvailableCells(string cell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKing = false)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
-            var myHorizontalKey = HorizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
+            var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
             var cellVerticalValue = Convert.ToInt32(cell.Substring(1, 1));
 
             for (int h = myHorizontalKey + 1, v = cellVerticalValue + 1; h <= 8 && v <= 8; h++, v++)
             {
-                if (FiguresArrangement.ContainsKey(HorizontalValues[h] + v) && FiguresArrangement[HorizontalValues[h] + v].color == WhoseMove)
+                if (figuresArrangement.ContainsKey(horizontalValues[h] + v) && figuresArrangement[horizontalValues[h] + v].color == whoseMove)
                 {
                     break;
                 }
-                else if (!FiguresArrangement.ContainsKey(HorizontalValues[h] + v))
+                else if (!figuresArrangement.ContainsKey(horizontalValues[h] + v))
                 {
-                    avaliableCells.Add(HorizontalValues[h] + v);
+                    avaliableCells.Add(horizontalValues[h] + v);
                 }
-                else if (FiguresArrangement.ContainsKey(HorizontalValues[h] + v) && FiguresArrangement[HorizontalValues[h] + v].color != WhoseMove)
+                else if (figuresArrangement.ContainsKey(horizontalValues[h] + v) && figuresArrangement[horizontalValues[h] + v].color != whoseMove)
                 {
-                    avaliableCells.Add(HorizontalValues[h] + v);
+                    avaliableCells.Add(horizontalValues[h] + v);
                     break;
                 }
                 if (isKing)
@@ -322,17 +322,17 @@ namespace Chess
 
             for (int h = myHorizontalKey - 1, v = cellVerticalValue + 1; h >= 1 && v <= 8; h--, v++)
             {
-                if (FiguresArrangement.ContainsKey(HorizontalValues[h] + v) && FiguresArrangement[HorizontalValues[h] + v].color == WhoseMove)
+                if (figuresArrangement.ContainsKey(horizontalValues[h] + v) && figuresArrangement[horizontalValues[h] + v].color == whoseMove)
                 {
                     break;
                 }
-                else if (!FiguresArrangement.ContainsKey(HorizontalValues[h] + v))
+                else if (!figuresArrangement.ContainsKey(horizontalValues[h] + v))
                 {
-                    avaliableCells.Add(HorizontalValues[h] + v);
+                    avaliableCells.Add(horizontalValues[h] + v);
                 }
-                else if (FiguresArrangement.ContainsKey(HorizontalValues[h] + v) && FiguresArrangement[HorizontalValues[h] + v].color != WhoseMove)
+                else if (figuresArrangement.ContainsKey(horizontalValues[h] + v) && figuresArrangement[horizontalValues[h] + v].color != whoseMove)
                 {
-                    avaliableCells.Add(HorizontalValues[h] + v);
+                    avaliableCells.Add(horizontalValues[h] + v);
                     break;
                 }
                 if (isKing)
@@ -343,17 +343,17 @@ namespace Chess
 
             for (int h = myHorizontalKey - 1, v = cellVerticalValue - 1; h >= 1 && v >= 1; h--, v--)
             {
-                if (FiguresArrangement.ContainsKey(HorizontalValues[h] + v) && FiguresArrangement[HorizontalValues[h] + v].color == WhoseMove)
+                if (figuresArrangement.ContainsKey(horizontalValues[h] + v) && figuresArrangement[horizontalValues[h] + v].color == whoseMove)
                 {
                     break;
                 }
-                else if (!FiguresArrangement.ContainsKey(HorizontalValues[h] + v))
+                else if (!figuresArrangement.ContainsKey(horizontalValues[h] + v))
                 {
-                    avaliableCells.Add(HorizontalValues[h] + v);
+                    avaliableCells.Add(horizontalValues[h] + v);
                 }
-                else if (FiguresArrangement.ContainsKey(HorizontalValues[h] + v) && FiguresArrangement[HorizontalValues[h] + v].color != WhoseMove)
+                else if (figuresArrangement.ContainsKey(horizontalValues[h] + v) && figuresArrangement[horizontalValues[h] + v].color != whoseMove)
                 {
-                    avaliableCells.Add(HorizontalValues[h] + v);
+                    avaliableCells.Add(horizontalValues[h] + v);
                     break;
                 }
                 if (isKing)
@@ -364,17 +364,17 @@ namespace Chess
 
             for (int h = myHorizontalKey + 1, v = cellVerticalValue - 1; h <= 8 && v >= 1; h++, v--)
             {
-                if (FiguresArrangement.ContainsKey(HorizontalValues[h] + v) && FiguresArrangement[HorizontalValues[h] + v].color == WhoseMove)
+                if (figuresArrangement.ContainsKey(horizontalValues[h] + v) && figuresArrangement[horizontalValues[h] + v].color == whoseMove)
                 {
                     break;
                 }
-                else if (!FiguresArrangement.ContainsKey(HorizontalValues[h] + v))
+                else if (!figuresArrangement.ContainsKey(horizontalValues[h] + v))
                 {
-                    avaliableCells.Add(HorizontalValues[h] + v);
+                    avaliableCells.Add(horizontalValues[h] + v);
                 }
-                else if (FiguresArrangement.ContainsKey(HorizontalValues[h] + v) && FiguresArrangement[HorizontalValues[h] + v].color != WhoseMove)
+                else if (figuresArrangement.ContainsKey(horizontalValues[h] + v) && figuresArrangement[horizontalValues[h] + v].color != whoseMove)
                 {
-                    avaliableCells.Add(HorizontalValues[h] + v);
+                    avaliableCells.Add(horizontalValues[h] + v);
                     break;
                 }
                 if (isKing)
@@ -384,19 +384,21 @@ namespace Chess
             }
         }
 
-        private static void CheckKingsSafety(string cell, string secondCell, Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, string WhoseMove)
+        private static void CheckKingsSafety(string cell, string secondCell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var possibleAvaliableCells = new List<string>();
             var possibleFiguresArrangement = new Dictionary<string, Figure>();
-            var inverseWhoseMove = $"{(WhoseMove == "White" ? "Black" : "White")}";
+            var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
 
-            if (FiguresArrangement.ContainsKey(secondCell) && FiguresArrangement[secondCell].color == WhoseMove)
+
+            //перевірка, щоб не взяти фігуру свого кольору
+            if (figuresArrangement.ContainsKey(secondCell) && figuresArrangement[secondCell].color == whoseMove)
             {
                 avaliableCells.Clear();
                 return;
             }
 
-            foreach(var item in FiguresArrangement)
+            foreach(var item in figuresArrangement)
             {
                 possibleFiguresArrangement.Add(item.Key, item.Value);
             }
@@ -416,7 +418,7 @@ namespace Chess
 
             foreach (var item in possibleFiguresArrangement)
             {
-                if (item.Value.color == WhoseMove)
+                if (item.Value.color == whoseMove)
                 {
                     continue;
                 }
@@ -425,7 +427,7 @@ namespace Chess
                     GetAvaliableCells(item.Key, "", possibleFiguresArrangement, ref possibleAvaliableCells, inverseWhoseMove, true);
                 }
 
-                if(possibleAvaliableCells.Contains(possibleFiguresArrangement.Where(w => w.Value.type == "King" && w.Value.color == WhoseMove).First().Key))
+                if(possibleAvaliableCells.Contains(possibleFiguresArrangement.Where(w => w.Value.type == "King" && w.Value.color == whoseMove).First().Key))
                 {
                     avaliableCells.Clear();
                     avaliableCells.Add("check kings safety result - false");

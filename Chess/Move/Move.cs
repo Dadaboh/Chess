@@ -9,65 +9,65 @@ namespace Chess
 {
     internal static class Move
     {
-        internal static void MoveFigure(Button cell, Label DEB, ref Dictionary<string, Figure> FiguresArrangement, ref List<string> avaliableCells, ref List<Button> CellsInMove, ref string WhoseMove)
+        internal static void MoveFigure(Button cell, Label DEB, ref Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, ref List<Button> cellsInMove, ref string whoseMove)
         {
-            if (CellsInMove.Count == 0 && !FiguresArrangement.ContainsKey(cell.Name))
+            if (cellsInMove.Count == 0 && !figuresArrangement.ContainsKey(cell.Name))
             {
                 DEB.Content = "Перша клітинка має містити фігуру";
             }
-            else if (CellsInMove.Count == 0 && FiguresArrangement.ContainsKey(cell.Name) && FiguresArrangement[cell.Name].color != WhoseMove)
+            else if (cellsInMove.Count == 0 && figuresArrangement.ContainsKey(cell.Name) && figuresArrangement[cell.Name].color != whoseMove)
             {
-                DEB.Content = $"Зараз мають ходити {(WhoseMove == "White" ? "білі" : "чорні")}";
+                DEB.Content = $"Зараз мають ходити {(whoseMove == "White" ? "білі" : "чорні")}";
             }
-            else if (CellsInMove.Count == 0 && FiguresArrangement.ContainsKey(cell.Name) && FiguresArrangement[cell.Name].color == WhoseMove)
+            else if (cellsInMove.Count == 0 && figuresArrangement.ContainsKey(cell.Name) && figuresArrangement[cell.Name].color == whoseMove)
             {
                 DEB.Content = $"{cell.Name}";
-                CellsInMove.Add(cell);
+                cellsInMove.Add(cell);
             }
-            else if (CellsInMove.Count == 1 && cell == CellsInMove[0])
+            else if (cellsInMove.Count == 1 && cell == cellsInMove[0])
             {
                 DEB.Content = "Однакова клітинка";
-                CellsInMove.Clear();
+                cellsInMove.Clear();
             }
-            else if (CellsInMove.Count == 1 && cell != CellsInMove[0])
+            else if (cellsInMove.Count == 1 && cell != cellsInMove[0])
             {
-                CellsInMove.Add(cell);
+                cellsInMove.Add(cell);
 
-                AvaliableCells.GetAvaliableCells(CellsInMove[0].Name, CellsInMove[1].Name, FiguresArrangement, ref avaliableCells, WhoseMove);
+                AvaliableCells.GetAvaliableCells(cellsInMove[0].Name, cellsInMove[1].Name, figuresArrangement, ref avaliableCells, whoseMove);
 
                 if (avaliableCells.Contains("check kings safety result - false"))
                 {
                     DEB.Content = "Підставляємо короля під удар.";
-                    CellsInMove.Clear();
+                    cellsInMove.Clear();
                 }
-                else if (!avaliableCells.Contains(CellsInMove[1].Name))
+                else if (!avaliableCells.Contains(cellsInMove[1].Name))
                 {
                     DEB.Content = "Недоступний хід";
-                    CellsInMove.Clear();
+                    cellsInMove.Clear();
                 }
-                else if (avaliableCells.Contains(CellsInMove[1].Name))
+                else if (avaliableCells.Contains(cellsInMove[1].Name))
                 {
-                    CellsInMove[1].Content = CellsInMove[0].Content;
-                    CellsInMove[0].Content = string.Empty;
+                    cellsInMove[1].Content = cellsInMove[0].Content;
+                    cellsInMove[0].Content = string.Empty;
 
-                    if (FiguresArrangement.ContainsKey(CellsInMove[1].Name))
+                    if (figuresArrangement.ContainsKey(cellsInMove[1].Name))
                     {
-                        FiguresArrangement.Remove(CellsInMove[1].Name);
+                        figuresArrangement.Remove(cellsInMove[1].Name);
 
-                        FiguresArrangement.Add(CellsInMove[1].Name, FiguresArrangement[CellsInMove[0].Name]);
-                        FiguresArrangement.Remove(CellsInMove[0].Name);
+                        figuresArrangement.Add(cellsInMove[1].Name, figuresArrangement[cellsInMove[0].Name]);
+                        figuresArrangement.Remove(cellsInMove[0].Name);
                     }
                     else
                     {
-                        FiguresArrangement.Add(CellsInMove[1].Name, FiguresArrangement[CellsInMove[0].Name]);
-                        FiguresArrangement.Remove(CellsInMove[0].Name);
+                        figuresArrangement.Add(cellsInMove[1].Name, figuresArrangement[cellsInMove[0].Name]);
+                        figuresArrangement.Remove(cellsInMove[0].Name);
                     }
 
                     //History.Add($"{CellsInMove[0].Name} => {CellsInMove[1].Name}");
 
-                    CellsInMove.Clear();
+                    cellsInMove.Clear();
 
-                    WhoseMove = WhoseMove == "White" ? "Black" : "White";
+                    whoseMove = whoseMove == "White" ? "Black" : "White";
                 }
 
             }
