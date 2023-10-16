@@ -66,8 +66,21 @@ namespace Chess
 
                     //History.Add($"{CellsInMove[0].Name} => {CellsInMove[1].Name}");
 
-                    cellsInMove.Clear();
 
+                    //перевіряємо чи поставили шах ворожому королю 
+                    {
+                        avaliableCells.Clear();
+                        AvaliableCells.GetAvaliableCells(cellsInMove[1].Name, "", figuresArrangement, ref avaliableCells, whoseMove, true);
+
+                        var whoseMoveStr = whoseMove.ToString();
+
+                        if (avaliableCells.Contains(figuresArrangement.Where(w => w.Value.type == "King" && w.Value.color != whoseMoveStr).First().Key))
+                        {
+                            DEB.Content = "ШАХ";
+                        }
+                    }
+
+                        cellsInMove.Clear();
                     whoseMove = whoseMove == "White" ? "Black" : "White";
                 }
             }

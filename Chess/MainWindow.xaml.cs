@@ -154,6 +154,8 @@ namespace Chess
             H7.Content = BlackChess["Pawn"];
         }
 
+
+
         #region Cells
         private void A1_Click(object sender, RoutedEventArgs e)
         {
