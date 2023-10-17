@@ -384,7 +384,7 @@ namespace Chess
             }
         }
 
-        private static void CheckKingsSafety(string cell, string secondCell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
+        internal static void CheckKingsSafety(string cell, string secondCell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var possibleAvaliableCells = new List<string>();
             var possibleFiguresArrangement = new Dictionary<string, Figure>();

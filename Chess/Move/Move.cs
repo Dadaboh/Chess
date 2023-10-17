@@ -80,34 +80,64 @@ namespace Chess
                         }
                     }
 
-                    ////перевіряємо чи є доступні ходи для ворожої команди
-                    //{
-                    //    var possibleOpponentsMoves = new List<string>();
-                    //    var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
+                    //перевіряємо чи є доступні ходи для ворожої команди
+                    {
+                        var tmpAvaliableCells = new List<string>();
+                        var result = new List<string>();
+                        var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
 
-                    //    foreach (var item in figuresArrangement)
-                    //    {
-                    //        if (item.Value.color == whoseMove)
-                    //        {
-                    //            continue;
-                    //        }
-                    //        else
-                    //        {
-                    //            AvaliableCells.GetAvaliableCells(item.Key, item.Key, figuresArrangement, ref avaliableCells, inverseWhoseMove);
-                    //        }
+                        foreach (var item in figuresArrangement)
+                        {
 
-                    //        foreach (var str in avaliableCells)
-                    //        {
-                    //            possibleOpponentsMoves.Add(str);
-                    //        }
-                    //    }
+                            if (item.Key == "G7")
+                            {
+                                avaliableCells.Clear();
+                                tmpAvaliableCells.Clear();
 
-                    //    if (possibleOpponentsMoves.Any())
-                    //    {
-                    //        Console.WriteLine();
-                    //    }
+                                if (item.Value.color == whoseMove)
+                                {
+                                    continue;
+                                }
 
-                    //}
+                                AvaliableCells.GetAvaliableCells(item.Key, "", figuresArrangement, ref avaliableCells, inverseWhoseMove, true);
+
+                                foreach (var str in avaliableCells)
+                                {
+                                    tmpAvaliableCells.Add(str);
+                                }
+
+                                if (!tmpAvaliableCells.Any())
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    foreach (var str in tmpAvaliableCells)
+                                    {
+                                        avaliableCells.Clear();
+
+                                        AvaliableCells.CheckKingsSafety(item.Key, str, figuresArrangement, ref avaliableCells, inverseWhoseMove);
+
+                                        foreach (var str2 in avaliableCells)
+                                        {
+                                            if (str2.Length == 2)
+                                            {
+                                                result.Add(str2);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                        }
+
+
+
+
+                        result.Add("asd");
+                        result.Remove("asd");
+
+                    }
 
                     cellsInMove.Clear();
                     whoseMove = whoseMove == "White" ? "Black" : "White";
