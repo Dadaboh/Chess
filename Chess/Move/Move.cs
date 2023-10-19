@@ -133,7 +133,7 @@ namespace Chess
 
                             if(!result.Any() && isCheck == true)
                             {
-                                DEB.Content = "Шах і мат";
+                                DEB.Content = $"Шах і мат. Перемогли {(whoseMove == "White" ? "білі" : "чорні")}";
                             }
                             else if (result.Any() && isCheck == false)
                             {
