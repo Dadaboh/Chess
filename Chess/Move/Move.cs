@@ -12,6 +12,8 @@ namespace Chess
     {
         internal static void MoveFigure(Button cell, Label DEB, ref Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, ref List<Button> cellsInMove, ref string whoseMove)
         {
+            bool isCheck = false;
+
             if (cellsInMove.Count == 0 && !figuresArrangement.ContainsKey(cell.Name))
             {
                 DEB.Content = "Перша клітинка має містити фігуру";
@@ -77,6 +79,7 @@ namespace Chess
                         if (avaliableCells.Contains(figuresArrangement.Where(w => w.Value.type == "King" && w.Value.color != whoseMoveStr).First().Key))
                         {
                             DEB.Content = "ШАХ";
+                            isCheck = true;
                         }
                     }
 
@@ -125,14 +128,19 @@ namespace Chess
                                     }
                                 }
                             }
+
+                            result.Remove("check kings safety result - false");
+
+                            if(!result.Any() && isCheck == true)
+                            {
+                                DEB.Content = "Шах і мат";
+                            }
+                            else if (result.Any() && isCheck == false)
+                            {
+                                DEB.Content = "Пат. Нічия.";
+                            }
                             
                         }
-
-
-
-
-                        result.Add("asd");
-                        result.Remove("asd");
 
                     }
 
