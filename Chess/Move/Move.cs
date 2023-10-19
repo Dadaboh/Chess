@@ -126,17 +126,18 @@ namespace Chess
                                     }
                                 }
 
-                            result.Remove("check kings safety result - false");
+                            //result.Remove("check kings safety result - false");
+                        }
 
-                            //if(!result.Any() && isCheck == true)
-                            //{
-                            //    DEB.Content = $"Шах і мат. Перемогли {(whoseMove == "White" ? "білі" : "чорні")}";
-                            //}
-                            //else if (!result.Any() && isCheck == false)
-                            //{
-                            //    DEB.Content = "Пат. Нічия.";
-                            //}
-                            
+                        result.Add("asd");
+                        result.Remove("asd");
+                        if (!result.Any() && isCheck == true)
+                        {
+                            DEB.Content = $"Шах і мат. Перемогли {(whoseMove == "White" ? "білі" : "чорні")}";
+                        }
+                        else if (!result.Any() && isCheck == false)
+                        {
+                            DEB.Content = "Пат. Нічия.";
                         }
 
                     }
