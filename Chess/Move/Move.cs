@@ -92,8 +92,6 @@ namespace Chess
                         foreach (var item in figuresArrangement)
                         {
 
-                            if (item.Key == "G7")
-                            {
                                 avaliableCells.Clear();
                                 tmpAvaliableCells.Clear();
 
@@ -127,7 +125,6 @@ namespace Chess
 
                                     }
                                 }
-                            }
 
                             result.Remove("check kings safety result - false");
 
