@@ -124,11 +124,10 @@ namespace Chess
                                         }
 
                                     }
-                                }
-
-                            //result.Remove("check kings safety result - false");
+                                }                           
                         }
 
+                        result.Remove("check kings safety result - false");
                         result.Add("asd");
                         result.Remove("asd");
                         if (!result.Any() && isCheck == true)
