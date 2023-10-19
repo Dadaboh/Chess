@@ -132,7 +132,7 @@ namespace Chess
                             {
                                 DEB.Content = $"Шах і мат. Перемогли {(whoseMove == "White" ? "білі" : "чорні")}";
                             }
-                            else if (result.Any() && isCheck == false)
+                            else if (!result.Any() && isCheck == false)
                             {
                                 DEB.Content = "Пат. Нічия.";
                             }
