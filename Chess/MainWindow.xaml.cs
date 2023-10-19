@@ -16,8 +16,6 @@ namespace Chess
         internal static string whoseMove = "White";
         internal static List<Button> cellsInMove = new List<Button>();
         internal static List<string> avaliableCells = new List<string>();
-    
-        List<string> history = new List<string>();
 
         #region FiguresCreations
         static Pawn whitePawn_1 = new Pawn("White");
@@ -153,8 +151,6 @@ namespace Chess
             G7.Content = BlackChess["Pawn"];
             H7.Content = BlackChess["Pawn"];
         }
-
-
 
         #region Cells
         private void A1_Click(object sender, RoutedEventArgs e)

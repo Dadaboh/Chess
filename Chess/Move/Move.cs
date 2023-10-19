@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,6 +11,9 @@ namespace Chess
 {
     internal static class Move
     {
+        //static List<string> history = new List<string>();
+        static string history;
+
         internal static void MoveFigure(Button cell, Label DEB, ref Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, ref List<Button> cellsInMove, ref string whoseMove)
         {
             bool isCheck = false;
@@ -138,6 +142,13 @@ namespace Chess
                             DEB.Content = "Пат. Нічия.";
                         }
 
+                    }
+
+                    history += (cellsInMove[0].Name + " => " + cellsInMove[1].Name + "\n");
+
+                    using(var sw = new StreamWriter("History.txt"))
+                    {
+                        sw.Write(history);
                     }
 
                     cellsInMove.Clear();
