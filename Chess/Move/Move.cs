@@ -114,17 +114,14 @@ namespace Chess
                                 {
                                     foreach (var str in tmpAvaliableCells)
                                     {
-                                        avaliableCells.Clear();
-
                                         AvaliableCells.CheckKingsSafety(item.Key, str, figuresArrangement, ref avaliableCells, inverseWhoseMove);
 
-                                        foreach (var str2 in avaliableCells)
+
+                                        if(!avaliableCells.Contains("check kings safety result - false"))
                                         {
-                                            if (str2.Length == 2)
-                                            {
-                                                result.Add(str2);
-                                            }
+                                            result.Add(str);
                                         }
+
                                     }
                                 }
                             }
