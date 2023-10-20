@@ -363,7 +363,7 @@
                 <ImageBrush ImageSource="/1.jpg"/>
             </Button.Background>
         </Button>
-        <Label x:Name="DEB" Content="Label" HorizontalAlignment="Left" Margin="870,100,0,0" VerticalAlignment="Top" Height="83" Width="300"/>
+        <Label x:Name="DEB" Content="" HorizontalAlignment="Left" Margin="870,100,0,0" VerticalAlignment="Top" Height="83" Width="300"/>
 
     </Grid>
 </Window>

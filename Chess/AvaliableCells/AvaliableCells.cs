@@ -37,7 +37,7 @@ namespace Chess
                 { 9 , "empty" },
          };
 
-        internal static void GetAvaliableCells(string cell, string secondCell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKingsSafetyCheck = false)
+        internal static void GetAvailableCells(string cell, string secondCell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKingsSafetyCheck = false)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
             var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;

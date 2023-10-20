@@ -119,6 +119,8 @@ namespace Chess
                                 {
                                     foreach (var str in tmpAvaliableCells)
                                     {
+                                        avaliableCells.Remove("check kings safety result - false");
+
                                         AvaliableCells.CheckKingsSafety(item.Key, str, figuresArrangement, ref avaliableCells, inverseWhoseMove);
 
 
