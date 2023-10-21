@@ -1,10 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
-using static System.Net.Mime.MediaTypeNames;
-
 
 namespace Chess
 {
@@ -109,45 +105,45 @@ namespace Chess
                 { (int) MyEnums.PiecesTypes.Rook   , "\u265C" },
                 { (int) MyEnums.PiecesTypes.Knight , "\u265E" },
                 { (int) MyEnums.PiecesTypes.Bishop , "\u265D" },
-                { "Queen"  , "\u265B" },
-                { "King"   , "\u265A" },
+                { (int) MyEnums.PiecesTypes.Queen  , "\u265B" },
+                { (int) MyEnums.PiecesTypes.King   , "\u265A" },
             };
 
-            A1.Content = WhiteChess["Rook"];
-            B1.Content = WhiteChess["Knight"];
-            C1.Content = WhiteChess["Bishop"];
-            D1.Content = WhiteChess["Queen"];
-            E1.Content = WhiteChess["King"];
-            F1.Content = WhiteChess["Bishop"];
-            G1.Content = WhiteChess["Knight"];
-            H1.Content = WhiteChess["Rook"];
+            A1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Rook];
+            B1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Knight];
+            C1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Bishop];
+            D1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Queen];
+            E1.Content = WhiteChess[(int)MyEnums.PiecesTypes.King];
+            F1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Bishop];
+            G1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Knight];
+            H1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Rook];
 
-            A2.Content = WhiteChess["Pawn"];
-            B2.Content = WhiteChess["Pawn"];
-            C2.Content = WhiteChess["Pawn"];
-            D2.Content = WhiteChess["Pawn"];
-            E2.Content = WhiteChess["Pawn"];
-            F2.Content = WhiteChess["Pawn"];
-            G2.Content = WhiteChess["Pawn"];
-            H2.Content = WhiteChess["Pawn"];
+            A2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            B2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            C2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            D2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            E2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            F2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            G2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            H2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
 
-            A8.Content = BlackChess["Rook"];
-            B8.Content = BlackChess["Knight"];
-            C8.Content = BlackChess["Bishop"];
-            D8.Content = BlackChess["Queen"];
-            E8.Content = BlackChess["King"];
-            F8.Content = BlackChess["Bishop"];
-            G8.Content = BlackChess["Knight"];
-            H8.Content = BlackChess["Rook"];
+            A8.Content = BlackChess[(int)MyEnums.PiecesTypes.Rook];
+            B8.Content = BlackChess[(int)MyEnums.PiecesTypes.Knight];
+            C8.Content = BlackChess[(int)MyEnums.PiecesTypes.Bishop];
+            D8.Content = BlackChess[(int)MyEnums.PiecesTypes.Queen];
+            E8.Content = BlackChess[(int)MyEnums.PiecesTypes.King];
+            F8.Content = BlackChess[(int)MyEnums.PiecesTypes.Bishop];
+            G8.Content = BlackChess[(int)MyEnums.PiecesTypes.Knight];
+            H8.Content = BlackChess[(int)MyEnums.PiecesTypes.Rook];
 
-            A7.Content = BlackChess["Pawn"];
-            B7.Content = BlackChess["Pawn"];
-            C7.Content = BlackChess["Pawn"];
-            D7.Content = BlackChess["Pawn"];
-            E7.Content = BlackChess["Pawn"];
-            F7.Content = BlackChess["Pawn"];
-            G7.Content = BlackChess["Pawn"];
-            H7.Content = BlackChess["Pawn"];
+            A7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            B7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            C7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            D7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            E7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            F7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            G7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            H7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
         }
 
         #region Cells
