@@ -70,84 +70,11 @@ namespace Chess
                         figuresArrangement.Remove(cellsInMove[0].Name);
                     }
 
-                    //History.Add($"{CellsInMove[0].Name} => {CellsInMove[1].Name}");
-
-
-
-                    //{
-                    //    avaliableCells.Clear();
-                    //    AvaliableCells.GetAvailableCells(cellsInMove[1].Name, "", figuresArrangement, ref avaliableCells, whoseMove, true);
-
-                    //    var whoseMoveStr = whoseMove.ToString();
-
-                    //    if (avaliableCells.Contains(figuresArrangement.Where(w => w.Value.type == "King" && w.Value.color != whoseMoveStr).First().Key))
-                    //    {
-                    //        DEB.Content = "ШАХ";
-                    //        isCheck = true;
-                    //    }
-                    //}
-
                     //перевіряємо чи поставили шах ворожому королю 
-                    checkCheck(ref avaliableCells, ref cellsInMove, ref figuresArrangement, ref whoseMove, DEB, ref isCheck);
+                    СheckCheck(ref avaliableCells, ref cellsInMove, ref figuresArrangement, ref whoseMove, DEB, ref isCheck);
 
                     //перевіряємо чи є доступні ходи для ворожої команди
-                    {
-                        var tmpAvaliableCells = new List<string>();
-                        var result = new List<string>();
-                        var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
-
-                        foreach (var item in figuresArrangement)
-                        {
-
-                                avaliableCells.Clear();
-                                tmpAvaliableCells.Clear();
-
-                                if (item.Value.color == whoseMove)
-                                {
-                                    continue;
-                                }
-
-                                AvaliableCells.GetAvailableCells(item.Key, "", figuresArrangement, ref avaliableCells, inverseWhoseMove, true);
-
-                                foreach (var str in avaliableCells)
-                                {
-                                    tmpAvaliableCells.Add(str);
-                                }
-
-                                if (!tmpAvaliableCells.Any())
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    foreach (var str in tmpAvaliableCells)
-                                    {
-                                        avaliableCells.Remove("check kings safety result - false");
-
-                                        AvaliableCells.CheckKingsSafety(item.Key, str, figuresArrangement, ref avaliableCells, inverseWhoseMove);
-
-
-                                        if(!avaliableCells.Contains("check kings safety result - false"))
-                                        {
-                                            result.Add(str);
-                                        }
-
-                                    }
-                                }                           
-                        }
-
-                        result.Remove("check kings safety result - false");
-
-                        if (!result.Any() && isCheck == true)
-                        {
-                            DEB.Content = $"Шах і мат. Перемогли {(whoseMove == "White" ? "білі" : "чорні")}";
-                        }
-                        else if (!result.Any() && isCheck == false)
-                        {
-                            DEB.Content = "Пат. Нічия.";
-                        }
-
-                    }
+                    GetOpponentAvailableCells(ref avaliableCells, ref figuresArrangement, ref whoseMove, DEB, ref isCheck);
 
                     history += (cellsInMove[0].Name + " => " + cellsInMove[1].Name + "\n");
 
@@ -162,8 +89,9 @@ namespace Chess
             }
         }
 
+
         //перевіряємо чи поставили шах ворожому королю 
-        internal static void checkCheck(ref List<string> avaliableCells, ref List<Button> cellsInMove, ref Dictionary<string, Figure> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
+        internal static void СheckCheck(ref List<string> avaliableCells, ref List<Button> cellsInMove, ref Dictionary<string, Figure> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
         {
             avaliableCells.Clear();
             AvaliableCells.GetAvailableCells(cellsInMove[1].Name, "", figuresArrangement, ref avaliableCells, whoseMove, true);
@@ -174,6 +102,66 @@ namespace Chess
             {
                 DEB.Content = "ШАХ";
                 isCheck = true;
+            }
+        }
+
+
+        //перевіряємо чи є доступні ходи для ворожої команди
+        internal static void GetOpponentAvailableCells(ref List<string> avaliableCells, ref Dictionary<string, Figure> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
+        {
+            var tmpAvaliableCells = new List<string>();
+            var result = new List<string>();
+            var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
+
+            foreach (var item in figuresArrangement)
+            {
+
+                avaliableCells.Clear();
+                tmpAvaliableCells.Clear();
+
+                if (item.Value.color == whoseMove)
+                {
+                    continue;
+                }
+
+                AvaliableCells.GetAvailableCells(item.Key, "", figuresArrangement, ref avaliableCells, inverseWhoseMove, true);
+
+                foreach (var str in avaliableCells)
+                {
+                    tmpAvaliableCells.Add(str);
+                }
+
+                if (!tmpAvaliableCells.Any())
+                {
+                    continue;
+                }
+                else
+                {
+                    foreach (var str in tmpAvaliableCells)
+                    {
+                        avaliableCells.Remove("check kings safety result - false");
+
+                        AvaliableCells.CheckKingsSafety(item.Key, str, figuresArrangement, ref avaliableCells, inverseWhoseMove);
+
+
+                        if (!avaliableCells.Contains("check kings safety result - false"))
+                        {
+                            result.Add(str);
+                        }
+
+                    }
+                }
+            }
+
+            result.Remove("check kings safety result - false");
+
+            if (!result.Any() && isCheck == true)
+            {
+                DEB.Content = $"Шах і мат. Перемогли {(whoseMove == "White" ? "білі" : "чорні")}";
+            }
+            else if (!result.Any() && isCheck == false)
+            {
+                DEB.Content = "Пат. Нічия.";
             }
         }
     }
