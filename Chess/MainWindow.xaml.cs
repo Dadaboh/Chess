@@ -89,8 +89,6 @@ namespace Chess
             { "E8" , blackKing },
         };
 
-        //Dictionary<string, Button> CellsInMove = new Dictionary<string, Button>();
-
         public MainWindow()
         {
             InitializeComponent();

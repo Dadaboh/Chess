@@ -424,7 +424,7 @@ namespace Chess
                 }
                 else
                 {
-                    GetAvaliableCells(item.Key, "", possibleFiguresArrangement, ref possibleAvaliableCells, inverseWhoseMove, true);
+                    GetAvailableCells(item.Key, "", possibleFiguresArrangement, ref possibleAvaliableCells, inverseWhoseMove, true);
                 }
 
                 if(possibleAvaliableCells.Contains(possibleFiguresArrangement.Where(w => w.Value.type == "King" && w.Value.color == whoseMove).First().Key))
