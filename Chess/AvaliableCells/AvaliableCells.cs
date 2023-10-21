@@ -37,7 +37,7 @@ namespace Chess
                 { 9 , "empty" },
          };
 
-        internal static void GetAvailableCells(string cell, string secondCell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKingsSafetyCheck = false)
+        internal static void GetAvailableCells(string cell, string secondCell, Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKingsSafetyCheck = false)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
             var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
@@ -48,28 +48,28 @@ namespace Chess
                 avaliableCells.Clear();
             }
 
-            if (figuresArrangement[cell].type == "Pawn")
+            if (figuresArrangement[cell].type == (int) MyEnums.PiecesTypes.Pawn)
             {
                 GetPawnAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if(figuresArrangement[cell].type == "Knight")
+            else if(figuresArrangement[cell].type == (int)MyEnums.PiecesTypes.Knight)
             {
                 GetKnightAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if (figuresArrangement[cell].type == "Rook")
+            else if (figuresArrangement[cell].type == (int)MyEnums.PiecesTypes.Rook)
             {
                 GetStraightAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if (figuresArrangement[cell].type == "Bishop")
+            else if (figuresArrangement[cell].type == (int)MyEnums.PiecesTypes.Bishop)
             {
                 GetDiagonalAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if (figuresArrangement[cell].type == "Queen")
+            else if (figuresArrangement[cell].type == (int)MyEnums.PiecesTypes.Queen)
             {
                 GetStraightAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
                 GetDiagonalAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove);
             }
-            else if (figuresArrangement[cell].type == "King")
+            else if (figuresArrangement[cell].type == (int)MyEnums.PiecesTypes.King)
             {
                 GetStraightAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove, true);
                 GetDiagonalAvailableCells(cell, figuresArrangement, ref avaliableCells, whoseMove, true);
@@ -81,7 +81,7 @@ namespace Chess
             }
         }
 
-        private static void GetPawnAvailableCells(string cell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
+        private static void GetPawnAvailableCells(string cell, Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
             var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
@@ -143,7 +143,7 @@ namespace Chess
             }
         }
 
-        private static void GetKnightAvailableCells(string cell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
+        private static void GetKnightAvailableCells(string cell, Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
             var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
@@ -202,7 +202,7 @@ namespace Chess
             }
         }
 
-        private static void GetStraightAvailableCells(string cell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKing = false)
+        private static void GetStraightAvailableCells(string cell, Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKing = false)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
             var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
@@ -293,7 +293,7 @@ namespace Chess
             }
         }
 
-        private static void GetDiagonalAvailableCells(string cell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKing = false)
+        private static void GetDiagonalAvailableCells(string cell, Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, string whoseMove, bool isKing = false)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
             var myHorizontalKey = horizontalValues.FirstOrDefault(x => x.Value == cellHorizontalValue).Key;
@@ -384,10 +384,10 @@ namespace Chess
             }
         }
 
-        internal static void CheckKingsSafety(string cell, string secondCell, Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
+        internal static void CheckKingsSafety(string cell, string secondCell, Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var possibleAvaliableCells = new List<string>();
-            var possibleFiguresArrangement = new Dictionary<string, Figure>();
+            var possibleFiguresArrangement = new Dictionary<string, Piece>();
             var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
 
 
@@ -427,7 +427,7 @@ namespace Chess
                     GetAvailableCells(item.Key, "", possibleFiguresArrangement, ref possibleAvaliableCells, inverseWhoseMove, true);
                 }
 
-                if(possibleAvaliableCells.Contains(possibleFiguresArrangement.Where(w => w.Value.type == "King" && w.Value.color == whoseMove).First().Key))
+                if(possibleAvaliableCells.Contains(possibleFiguresArrangement.Where(w => w.Value.type == (int)MyEnums.PiecesTypes.King && w.Value.color == whoseMove).First().Key))
                 {
                     avaliableCells.Clear();
                     avaliableCells.Add("check kings safety result - false");

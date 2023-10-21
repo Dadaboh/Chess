@@ -6,61 +6,61 @@ using System.Threading.Tasks;
 
 namespace Chess
 {
-    internal class Figure
+    internal class Piece
     {
         public string color;
-        public string type;
+        public int type;
     }
 
-    internal class Pawn : Figure
+    internal class Pawn : Piece
     {
         public Pawn(string pawnColor)
         {
             color = pawnColor;
-            type = "Pawn";
+            type = (int) MyEnums.PiecesTypes.Pawn;
         }
     }
 
-    internal class Rook : Figure
+    internal class Rook : Piece
     {
         public Rook(string rookColor)
         {
             color = rookColor;
-            type = "Rook";
+            type = (int) MyEnums.PiecesTypes.Rook;
         }
     }
-    internal class Knight : Figure
+    internal class Knight : Piece
     {
         public Knight(string bishopColor)
         {
             color = bishopColor;
-            type = "Knight";
+            type = (int) MyEnums.PiecesTypes.Knight;
         }
     }
 
-    internal class Bishop : Figure
+    internal class Bishop : Piece
     {
         public Bishop(string bishopColor)
         {
             color = bishopColor;
-            type = "Bishop";
+            type = (int) MyEnums.PiecesTypes.Bishop;
         }
     }
 
-    internal class Queen : Figure
+    internal class Queen : Piece
     {
         public Queen(string queenColor)
         {
             color = queenColor;
-            type = "Queen";
-        }
+            type = (int) MyEnums.PiecesTypes.Queen;
+        } 
     }
-    internal class King : Figure
+    internal class King : Piece
     {
         public King(string kingColor)
         {
             color = kingColor;
-            type = "King";
+            type = (int) MyEnums.PiecesTypes.King;
         }
     }
 

@@ -14,7 +14,7 @@ namespace Chess
         //static List<string> history = new List<string>();
         static string history;
 
-        internal static void MoveFigure(Button cell, Label DEB, ref Dictionary<string, Figure> figuresArrangement, ref List<string> avaliableCells, ref List<Button> cellsInMove, ref string whoseMove)
+        internal static void MoveFigure(Button cell, Label DEB, ref Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, ref List<Button> cellsInMove, ref string whoseMove)
         {
             bool isCheck = false;
 
@@ -91,14 +91,14 @@ namespace Chess
 
 
         //перевіряємо чи поставили шах ворожому королю 
-        internal static void СheckCheck(ref List<string> avaliableCells, ref List<Button> cellsInMove, ref Dictionary<string, Figure> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
+        internal static void СheckCheck(ref List<string> avaliableCells, ref List<Button> cellsInMove, ref Dictionary<string, Piece> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
         {
             avaliableCells.Clear();
             AvaliableCells.GetAvailableCells(cellsInMove[1].Name, "", figuresArrangement, ref avaliableCells, whoseMove, true);
 
             var whoseMoveStr = whoseMove.ToString();
 
-            if (avaliableCells.Contains(figuresArrangement.Where(w => w.Value.type == "King" && w.Value.color != whoseMoveStr).First().Key))
+            if (avaliableCells.Contains(figuresArrangement.Where(w => w.Value.type == (int)MyEnums.PiecesTypes.King && w.Value.color != whoseMoveStr).First().Key))
             {
                 DEB.Content = "ШАХ";
                 isCheck = true;
@@ -107,7 +107,7 @@ namespace Chess
 
 
         //перевіряємо чи є доступні ходи для ворожої команди
-        internal static void GetOpponentAvailableCells(ref List<string> avaliableCells, ref Dictionary<string, Figure> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
+        internal static void GetOpponentAvailableCells(ref List<string> avaliableCells, ref Dictionary<string, Piece> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
         {
             var tmpAvaliableCells = new List<string>();
             var result = new List<string>();
