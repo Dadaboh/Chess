@@ -90,7 +90,12 @@ namespace Chess
         {
             InitializeComponent();
 
-            List<RadioButton> radioButtonsList = new List<RadioButton>() { R1, R2, R3, R4, R5 };
+            List<RadioButton> radioButtonsList = new List<RadioButton>();
+            radioButtonsList.Add(R1);
+            radioButtonsList.Add(R2);
+            radioButtonsList.Add(R3);
+            radioButtonsList.Add(R4);
+            radioButtonsList.Add(R5);
 
             var WhiteChess = new Dictionary<int, string>()
             {

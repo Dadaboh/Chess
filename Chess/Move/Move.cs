@@ -166,7 +166,6 @@ namespace Chess
             }
         }
 
-
         internal static void CheckPawnLastRow(Label DEB, ref List<Button> cellsInMove, ref Dictionary<string, Piece> figuresArrangement, List<RadioButton> radioButtonsList)
         {
             if (cellsInMove[1].Name.Substring(1, 1) == "8" || cellsInMove[1].Name.Substring(1, 1) == "1")
