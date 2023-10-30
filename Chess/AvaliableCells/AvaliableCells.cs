@@ -381,6 +381,7 @@ namespace Chess
             }
         }
 
+        //Перевіряємо чи не підставляємо свого короля під удар, якщо зробити цей хід
         internal static void CheckKingsSafety(string cell, string secondCell, Dictionary<string, Piece> piecesArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var possibleAvaliableCells = new List<string>();
@@ -388,7 +389,7 @@ namespace Chess
             var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
 
 
-            //перевірка, щоб не взяти свою фігуру
+            //Перевірка, щоб не взяти свою фігуру
             if (piecesArrangement.ContainsKey(secondCell) && piecesArrangement[secondCell].color == whoseMove)
             {
                 avaliableCells.Clear();

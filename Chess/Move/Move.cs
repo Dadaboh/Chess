@@ -10,7 +10,7 @@ namespace Chess
         //static List<string> history = new List<string>();
         static string history;
 
-        internal static void MoveFigure(Button cell, Label DEB, ref Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, ref List<Button> cellsInMove, ref string whoseMove)
+        internal static void MoveFigure(Button cell, Label DEB, ref Dictionary<string, Piece> figuresArrangement, ref List<string> avaliableCells, ref List<Button> cellsInMove, ref string whoseMove, List<RadioButton> radioButtonsList = null)
         {
             bool isCheck = false;
 
@@ -77,6 +77,11 @@ namespace Chess
                     using(var sw = new StreamWriter("History.txt"))
                     {
                         sw.Write(history);
+                    }
+
+                    if (figuresArrangement[cellsInMove[1].Name].type == (int)MyEnums.PiecesTypes.Pawn)
+                    {
+                        CheckPawnLastRow(DEB, ref cellsInMove, ref figuresArrangement, radioButtonsList);
                     }
 
                     cellsInMove.Clear();
@@ -158,6 +163,20 @@ namespace Chess
             else if (!result.Any() && isCheck == false)
             {
                 DEB.Content = "Пат. Нічия.";
+            }
+        }
+
+
+        internal static void CheckPawnLastRow(Label DEB, ref List<Button> cellsInMove, ref Dictionary<string, Piece> figuresArrangement, List<RadioButton> radioButtonsList)
+        {
+            if (cellsInMove[1].Name.Substring(1, 1) == "8" || cellsInMove[1].Name.Substring(1, 1) == "1")
+            {
+                DEB.Content = "Оберіть на яку фігуру\nзмінити пішку:";
+
+                foreach (var radioButton in radioButtonsList)
+                {
+                    radioButton.Visibility = System.Windows.Visibility.Visible;
+                }
             }
         }
     }

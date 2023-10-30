@@ -85,9 +85,12 @@ namespace Chess
             { "E8" , blackKing },
         };
 
+        List<RadioButton> radioButtonsList = new List<RadioButton>();
         public MainWindow()
         {
             InitializeComponent();
+
+            List<RadioButton> radioButtonsList = new List<RadioButton>() { R1, R2, R3, R4, R5 };
 
             var WhiteChess = new Dictionary<int, string>()
             {
@@ -149,7 +152,7 @@ namespace Chess
         #region Cells
         private void A1_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(A1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(A1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void A2_Click(object sender, RoutedEventArgs e)
@@ -184,7 +187,7 @@ namespace Chess
 
         private void A8_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(A8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(A8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void B1_Click(object sender, RoutedEventArgs e)

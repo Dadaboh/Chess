@@ -17,8 +17,11 @@
 
     internal class Rook : Piece
     {
+        public bool isCastlingAvailable;
+
         public Rook(string rookColor)
         {
+            isCastlingAvailable = true;
             color = rookColor;
             type = (int) MyEnums.PiecesTypes.Rook;
         }
@@ -51,8 +54,11 @@
     }
     internal class King : Piece
     {
+        public bool isCastlingAvailable;
+
         public King(string kingColor)
         {
+            isCastlingAvailable = true;
             color = kingColor;
             type = (int) MyEnums.PiecesTypes.King;
         }
