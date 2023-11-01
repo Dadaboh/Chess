@@ -197,7 +197,7 @@ namespace Chess
 
         private void B1_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(B1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(B1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void B2_Click(object sender, RoutedEventArgs e)
@@ -232,12 +232,12 @@ namespace Chess
 
         private void B8_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(B8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(B8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void C1_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(C1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(C1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void C2_Click(object sender, RoutedEventArgs e)
@@ -272,12 +272,12 @@ namespace Chess
 
         private void C8_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(C8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(C8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void D1_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(D1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(D1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void D2_Click(object sender, RoutedEventArgs e)
@@ -312,12 +312,12 @@ namespace Chess
 
         private void D8_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(D8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(D8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void E1_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(E1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(E1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void E2_Click(object sender, RoutedEventArgs e)
@@ -352,12 +352,12 @@ namespace Chess
 
         private void E8_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(E8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(E8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void F1_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(F1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(F1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void F2_Click(object sender, RoutedEventArgs e)
@@ -392,12 +392,12 @@ namespace Chess
 
         private void F8_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(F8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(F8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void G1_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(G1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(G1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void G2_Click(object sender, RoutedEventArgs e)
@@ -432,12 +432,12 @@ namespace Chess
 
         private void G8_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(G8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(G8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void H1_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(H1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(H1, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
 
         private void H2_Click(object sender, RoutedEventArgs e)
@@ -472,7 +472,7 @@ namespace Chess
 
         private void H8_Click(object sender, RoutedEventArgs e)
         {
-            Move.MoveFigure(H8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove);
+            Move.MoveFigure(H8, DEB, ref piecesArrangement, ref avaliableCells, ref cellsInMove, ref whoseMove, radioButtonsList);
         }
         #endregion 
         

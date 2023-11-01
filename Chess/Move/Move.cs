@@ -66,12 +66,21 @@ namespace Chess
                         figuresArrangement.Remove(cellsInMove[0].Name);
                     }
 
+
+                    //заміна пішки на іншу фігуру коли вона досягне останньої лінії
+                    if (figuresArrangement[cellsInMove[1].Name].type == (int)MyEnums.PiecesTypes.Pawn)
+                    {
+                        CheckPawnLastRow(DEB, ref cellsInMove, ref figuresArrangement, ref radioButtonsList);
+                    }
+
                     //перевіряємо чи поставили шах ворожому королю 
-                    СheckCheck(ref avaliableCells, ref cellsInMove, ref figuresArrangement, ref whoseMove, DEB, ref isCheck);
+                    AfterMove.СheckCheck(ref avaliableCells, ref cellsInMove, ref figuresArrangement, ref whoseMove, DEB, ref isCheck);
 
                     //перевіряємо чи є доступні ходи для ворожої команди
-                    GetOpponentAvailableCells(ref avaliableCells, ref figuresArrangement, ref whoseMove, DEB, ref isCheck);
+                    AfterMove.GetOpponentAvailableCells(ref avaliableCells, ref figuresArrangement, ref whoseMove, DEB, ref isCheck);
 
+
+                    //переписати історію в окремий клас. записувати в json всі партії
                     {
                         history += (cellsInMove[0].Name + " => " + cellsInMove[1].Name + "\n");
 
@@ -81,91 +90,9 @@ namespace Chess
                         }
                     }
 
-                    //заміна пішки на іншу фігуру коли вона досягне останньої лінії
-                    if (figuresArrangement[cellsInMove[1].Name].type == (int)MyEnums.PiecesTypes.Pawn)
-                    {
-                        CheckPawnLastRow(DEB, ref cellsInMove, ref figuresArrangement, ref radioButtonsList);
-                    }
-
                     cellsInMove.Clear();
                     whoseMove = whoseMove == "White" ? "Black" : "White";
                 }
-            }
-        }
-
-
-        //перевіряємо чи поставили шах ворожому королю 
-        internal static void СheckCheck(ref List<string> avaliableCells, ref List<Button> cellsInMove, ref Dictionary<string, Piece> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
-        {
-            avaliableCells.Clear();
-            AvaliableCells.GetAvailableCells(cellsInMove[1].Name, "", figuresArrangement, ref avaliableCells, whoseMove, true);
-
-            var whoseMoveStr = whoseMove.ToString();
-
-            if (avaliableCells.Contains(figuresArrangement.Where(w => w.Value.type == (int)MyEnums.PiecesTypes.King && w.Value.color != whoseMoveStr).First().Key))
-            {
-                DEB.Content = "ШАХ";
-                isCheck = true;
-            }
-        }
-
-
-        //перевіряємо чи є доступні ходи для ворожої команди
-        internal static void GetOpponentAvailableCells(ref List<string> avaliableCells, ref Dictionary<string, Piece> figuresArrangement, ref string whoseMove, Label DEB, ref bool isCheck)
-        {
-            var tmpAvaliableCells = new List<string>();
-            var result = new List<string>();
-            var inverseWhoseMove = $"{(whoseMove == "White" ? "Black" : "White")}";
-
-            foreach (var item in figuresArrangement)
-            {
-
-                avaliableCells.Clear();
-                tmpAvaliableCells.Clear();
-
-                if (item.Value.color == whoseMove)
-                {
-                    continue;
-                }
-
-                AvaliableCells.GetAvailableCells(item.Key, "", figuresArrangement, ref avaliableCells, inverseWhoseMove, true);
-
-                foreach (var str in avaliableCells)
-                {
-                    tmpAvaliableCells.Add(str);
-                }
-
-                if (!tmpAvaliableCells.Any())
-                {
-                    continue;
-                }
-                else
-                {
-                    foreach (var str in tmpAvaliableCells)
-                    {
-                        avaliableCells.Remove("check kings safety result - false");
-
-                        AvaliableCells.CheckKingsSafety(item.Key, str, figuresArrangement, ref avaliableCells, inverseWhoseMove);
-
-
-                        if (!avaliableCells.Contains("check kings safety result - false"))
-                        {
-                            result.Add(str);
-                        }
-
-                    }
-                }
-            }
-
-            result.Remove("check kings safety result - false");
-
-            if (!result.Any() && isCheck == true)
-            {
-                DEB.Content = $"Шах і мат. Перемогли {(whoseMove == "White" ? "білі" : "чорні")}";
-            }
-            else if (!result.Any() && isCheck == false)
-            {
-                DEB.Content = "Пат. Нічия.";
             }
         }
 

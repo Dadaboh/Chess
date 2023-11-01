@@ -45,6 +45,8 @@ namespace Chess
                 avaliableCells.Clear();
             }
 
+            //в залежності від типу фігури викликаємо методи для розрахунку доступних зодів для неї
+
             if (piecesArrangement[cell].type == (int) MyEnums.PiecesTypes.Pawn)
             {
                 GetPawnAvailableCells(cell, piecesArrangement, ref avaliableCells, whoseMove);
@@ -72,12 +74,15 @@ namespace Chess
                 GetDiagonalAvailableCells(cell, piecesArrangement, ref avaliableCells, whoseMove, true);
             }
 
-            if(!isKingsSafetyCheck)
+            //Перевіряємо чи не підставляємо свого короля під удар, якщо зробити цей хід
+            if (!isKingsSafetyCheck)
             {
                 CheckKingsSafety(cell, secondCell, piecesArrangement, ref avaliableCells, whoseMove);
             }
         }
 
+
+        //розрахунок доступних ходів для пішки
         private static void GetPawnAvailableCells(string cell, Dictionary<string, Piece> piecesArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
@@ -140,6 +145,7 @@ namespace Chess
             }
         }
 
+        //розрахунок доступних ходів для коня
         private static void GetKnightAvailableCells(string cell, Dictionary<string, Piece> piecesArrangement, ref List<string> avaliableCells, string whoseMove)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
@@ -199,6 +205,7 @@ namespace Chess
             }
         }
 
+        //розрахунок доступних ходів по 
         private static void GetStraightAvailableCells(string cell, Dictionary<string, Piece> piecesArrangement, ref List<string> avaliableCells, string whoseMove, bool isKing = false)
         {
             var cellHorizontalValue = cell.Substring(0, 1);
