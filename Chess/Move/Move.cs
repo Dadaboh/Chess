@@ -101,12 +101,28 @@ namespace Chess
         {
             if (cellsInMove[1].Name.Substring(1, 1) == "8" || cellsInMove[1].Name.Substring(1, 1) == "1")
             {
-                DEB.Content = "Оберіть на яку фігуру\nзмінити пішку:";
+                var isPawnWasChanged = false;
+
+                DEB.Content = "Оберіть на яку фігуру\nзамінити пішку:";
 
                 foreach (var radioButton in radioButtonsList)
                 {
                     radioButton.Visibility = System.Windows.Visibility.Visible;
                 }
+
+                do
+                {
+                    foreach (var radioButton in radioButtonsList)
+                    {
+                        if (radioButton.IsChecked == true)
+                        {
+                            isPawnWasChanged = true;
+                            break;
+                        }
+                    }
+                }
+                while (!isPawnWasChanged);
+
             }
         }
     }
