@@ -12,6 +12,8 @@ namespace Chess
         internal static string whoseMove = "White";
         internal static List<Button> cellsInMove = new List<Button>();
         internal static List<string> avaliableCells = new List<string>();
+        internal static List<RadioButton> radioButtonsList = new List<RadioButton>();
+
 
         #region PiecesCreations
         static Pawn whitePawn_1 = new Pawn("White");
@@ -51,46 +53,44 @@ namespace Chess
 
         Dictionary<string, Piece> piecesArrangement = new Dictionary<string, Piece>()
         {
-            { "A2" , whitePawn_1 },
-            { "B2" , whitePawn_2 },
-            { "C2" , whitePawn_3 },
-            { "D2" , whitePawn_4 },
-            { "E2" , whitePawn_5 },
-            { "F2" , whitePawn_6 },
-            { "G2" , whitePawn_7 },
-            { "H2" , whitePawn_8 },
-            { "A1" , whiteRook_1 },
-            { "H1" , whiteRook_2 },
-            { "B1" , whiteKnight_1 },
-            { "G1" , whiteKnight_2 },
-            { "C1" , whiteBishop_1 },
-            { "F1" , whiteBishop_2 },
-            { "D1" , whiteQueen },
+            { "A7" , whitePawn_1 },
+            //{ "B2" , whitePawn_2 },
+            //{ "C2" , whitePawn_3 },
+            //{ "D2" , whitePawn_4 },
+            //{ "E2" , whitePawn_5 },
+            //{ "F2" , whitePawn_6 },
+            //{ "G2" , whitePawn_7 },
+            //{ "H2" , whitePawn_8 },
+            //{ "A1" , whiteRook_1 },
+            //{ "H1" , whiteRook_2 },
+            //{ "B1" , whiteKnight_1 },
+            //{ "G1" , whiteKnight_2 },
+            //{ "C1" , whiteBishop_1 },
+            //{ "F1" , whiteBishop_2 },
+            //{ "D1" , whiteQueen },
             { "E1" , whiteKing },
-            { "A7" , blackPawn_1 },
-            { "B7" , blackPawn_2 },
-            { "C7" , blackPawn_3 },
-            { "D7" , blackPawn_4 },
-            { "E7" , blackPawn_5 },
-            { "F7" , blackPawn_6 },
-            { "G7" , blackPawn_7 },
-            { "H7" , blackPawn_8 },
-            { "A8" , blackRook_1 },
-            { "H8" , blackRook_2 },
-            { "B8" , blackKnight_1 },
-            { "G8" , blackKnight_2 },
-            { "C8" , blackBishop_1 },
-            { "F8" , blackBishop_2 },
-            { "D8" , blackQueen },
+            //{ "A7" , blackPawn_1 },
+            //{ "B7" , blackPawn_2 },
+            //{ "C7" , blackPawn_3 },
+            //{ "D7" , blackPawn_4 },
+            //{ "E7" , blackPawn_5 },
+            //{ "F7" , blackPawn_6 },
+            //{ "G7" , blackPawn_7 },
+            //{ "H7" , blackPawn_8 },
+            //{ "A8" , blackRook_1 },
+            //{ "H8" , blackRook_2 },
+            //{ "B8" , blackKnight_1 },
+            //{ "G8" , blackKnight_2 },
+            //{ "C8" , blackBishop_1 },
+            //{ "F8" , blackBishop_2 },
+            //{ "D8" , blackQueen },
             { "E8" , blackKing },
         };
 
-        List<RadioButton> radioButtonsList = new List<RadioButton>();
         public MainWindow()
         {
             InitializeComponent();
 
-            List<RadioButton> radioButtonsList = new List<RadioButton>();
             radioButtonsList.Add(R1);
             radioButtonsList.Add(R2);
             radioButtonsList.Add(R3);
@@ -117,41 +117,41 @@ namespace Chess
                 { (int) MyEnums.PiecesTypes.King   , "\u265A" },
             };
 
-            A1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Rook];
-            B1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Knight];
-            C1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Bishop];
-            D1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Queen];
+            //A1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Rook];
+            //B1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Knight];
+            //C1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Bishop];
+            //D1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Queen];
             E1.Content = WhiteChess[(int)MyEnums.PiecesTypes.King];
-            F1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Bishop];
-            G1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Knight];
-            H1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Rook];
+            //F1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Bishop];
+            //G1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Knight];
+            //H1.Content = WhiteChess[(int)MyEnums.PiecesTypes.Rook];
 
-            A2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
-            B2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
-            C2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
-            D2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
-            E2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
-            F2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
-            G2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
-            H2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            A7.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            //B2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            //C2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            //D2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            //E2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            //F2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            //G2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
+            //H2.Content = WhiteChess[(int)MyEnums.PiecesTypes.Pawn];
 
-            A8.Content = BlackChess[(int)MyEnums.PiecesTypes.Rook];
-            B8.Content = BlackChess[(int)MyEnums.PiecesTypes.Knight];
-            C8.Content = BlackChess[(int)MyEnums.PiecesTypes.Bishop];
-            D8.Content = BlackChess[(int)MyEnums.PiecesTypes.Queen];
+            //A8.Content = BlackChess[(int)MyEnums.PiecesTypes.Rook];
+            //B8.Content = BlackChess[(int)MyEnums.PiecesTypes.Knight];
+            //C8.Content = BlackChess[(int)MyEnums.PiecesTypes.Bishop];
+            //D8.Content = BlackChess[(int)MyEnums.PiecesTypes.Queen];
             E8.Content = BlackChess[(int)MyEnums.PiecesTypes.King];
-            F8.Content = BlackChess[(int)MyEnums.PiecesTypes.Bishop];
-            G8.Content = BlackChess[(int)MyEnums.PiecesTypes.Knight];
-            H8.Content = BlackChess[(int)MyEnums.PiecesTypes.Rook];
+            //F8.Content = BlackChess[(int)MyEnums.PiecesTypes.Bishop];
+            //G8.Content = BlackChess[(int)MyEnums.PiecesTypes.Knight];
+            //H8.Content = BlackChess[(int)MyEnums.PiecesTypes.Rook];
 
-            A7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
-            B7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
-            C7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
-            D7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
-            E7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
-            F7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
-            G7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
-            H7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            //A7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            //B7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            //C7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            //D7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            //E7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            //F7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            //G7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
+            //H7.Content = BlackChess[(int)MyEnums.PiecesTypes.Pawn];
         }
 
         #region Cells

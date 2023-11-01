@@ -366,11 +366,11 @@
         
         <Label x:Name="DEB" Content="" HorizontalAlignment="Left" Margin="870,100,0,0" VerticalAlignment="Top" Height="90" Width="300"/>
         
-        <RadioButton x:Name="R1" Content="Pawn" HorizontalAlignment="Left" Margin="870,200,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontWeight="Bold" FontSize="16" Visibility="Hidden"/>
-        <RadioButton x:Name="R2" Content="Rook" HorizontalAlignment="Left" Margin="870,225,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontWeight="Bold" FontSize="16" Visibility="Hidden"/>
-        <RadioButton x:Name="R3" Content="Knight" HorizontalAlignment="Left" Margin="870,250,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontWeight="Bold" FontSize="16" Visibility="Hidden"/>
-        <RadioButton x:Name="R4" Content="Bishop" HorizontalAlignment="Left" Margin="870,275,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontWeight="Bold" FontSize="16" Visibility="Hidden"/>
-        <RadioButton x:Name="R5" Content="Queen" HorizontalAlignment="Left" Margin="870,300,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontWeight="Bold" FontSize="16" Visibility="Hidden"/>
+        <RadioButton x:Name="R1" Content="Pawn" HorizontalAlignment="Left" Margin="870,200,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontSize="14" Visibility="Hidden"/>
+        <RadioButton x:Name="R2" Content="Rook" HorizontalAlignment="Left" Margin="870,225,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontSize="14" Visibility="Hidden"/>
+        <RadioButton x:Name="R3" Content="Knight" HorizontalAlignment="Left" Margin="870,250,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontSize="14" Visibility="Hidden"/>
+        <RadioButton x:Name="R4" Content="Bishop" HorizontalAlignment="Left" Margin="870,275,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontSize="14" Visibility="Hidden"/>
+        <RadioButton x:Name="R5" Content="Queen" HorizontalAlignment="Left" Margin="870,300,0,0" VerticalAlignment="Top" GroupName="PawnLastRow" Height="25" Width="70" FontSize="14" Visibility="Hidden"/>
 
     </Grid>
 </Window>

@@ -72,16 +72,19 @@ namespace Chess
                     //перевіряємо чи є доступні ходи для ворожої команди
                     GetOpponentAvailableCells(ref avaliableCells, ref figuresArrangement, ref whoseMove, DEB, ref isCheck);
 
-                    history += (cellsInMove[0].Name + " => " + cellsInMove[1].Name + "\n");
-
-                    using(var sw = new StreamWriter("History.txt"))
                     {
-                        sw.Write(history);
+                        history += (cellsInMove[0].Name + " => " + cellsInMove[1].Name + "\n");
+
+                        using (var sw = new StreamWriter("History.txt"))
+                        {
+                            sw.Write(history);
+                        }
                     }
 
+                    //заміна пішки на іншу фігуру коли вона досягне останньої лінії
                     if (figuresArrangement[cellsInMove[1].Name].type == (int)MyEnums.PiecesTypes.Pawn)
                     {
-                        CheckPawnLastRow(DEB, ref cellsInMove, ref figuresArrangement, radioButtonsList);
+                        CheckPawnLastRow(DEB, ref cellsInMove, ref figuresArrangement, ref radioButtonsList);
                     }
 
                     cellsInMove.Clear();
@@ -166,7 +169,8 @@ namespace Chess
             }
         }
 
-        internal static void CheckPawnLastRow(Label DEB, ref List<Button> cellsInMove, ref Dictionary<string, Piece> figuresArrangement, List<RadioButton> radioButtonsList)
+        //заміна пішки на іншу фігуру коли вона досягне останньої лінії
+        internal static void CheckPawnLastRow(Label DEB, ref List<Button> cellsInMove, ref Dictionary<string, Piece> figuresArrangement, ref List<RadioButton> radioButtonsList)
         {
             if (cellsInMove[1].Name.Substring(1, 1) == "8" || cellsInMove[1].Name.Substring(1, 1) == "1")
             {
