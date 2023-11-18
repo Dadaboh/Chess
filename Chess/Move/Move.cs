@@ -110,18 +110,18 @@ namespace Chess
                     radioButton.Visibility = System.Windows.Visibility.Visible;
                 }
 
-                do
-                {
-                    foreach (var radioButton in radioButtonsList)
-                    {
-                        if (radioButton.IsChecked == true)
-                        {
-                            isPawnWasChanged = true;
-                            break;
-                        }
-                    }
-                }
-                while (!isPawnWasChanged);
+                //do
+                //{
+                //    foreach (var radioButton in radioButtonsList)
+                //    {
+                //        if (radioButton.IsChecked == true)
+                //        {
+                //            isPawnWasChanged = true;
+                //            break;
+                //        }
+                //    }
+                //}
+                //while (!isPawnWasChanged);
 
             }
         }
